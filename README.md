@@ -4,6 +4,8 @@ This is also for devs who don't know how to use lunar's api so feel free using t
 Am still learning java and this is my first open sourced project.
 Note: If you wanna use this for your server and don't know how to change stuff, shoot me a DM on discord @Dubai#1454 and I'll help you for free.
 
+I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
+
 # Waypoints
 ![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
 
