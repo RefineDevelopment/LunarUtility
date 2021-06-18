@@ -6,6 +6,9 @@ Note: If you wanna use this for your server and don't know how to change stuff, 
 
 I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
 
+# Depend
+This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
+
 # Waypoints
 ![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
 
