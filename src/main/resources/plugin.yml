@@ -1,0 +1,5 @@
+name: Lunar
+main: me.dubai.lunar.Lunar
+author: Dubai
+depend: [ LunarClient-API ]
+version: ${project.version}
