@@ -27,16 +27,21 @@ public class Lunar extends JavaPlugin {
         saveConfig();
         reloadConfig();
         registerlunar();
-        long start = System.currentTimeMillis();
-        CC.out("LunarUtilities enabled in " + (System.currentTimeMillis() - start) + "ms");
-        CC.out("Coded by DubaiGamer");
+        CC.out("&7&m------------------");
+        CC.out("&6LunarUtilities &ev1");
+        CC.out("&6Developer: &eDubaiGamer");
+        CC.out("&6Status: &aEnabled");
+        CC.out("&7&m------------------");
     }
 
     @Override
     public void onDisable() {
         instance = null;
-        CC.out("LunarUtility has been disabled.");
-        CC.out("Coded by DubaiGamer");
+        CC.out("&7&m------------------");
+        CC.out("&6LunarUtilities &ev1");
+        CC.out("&6Developer: &eDubaiGamer");
+        CC.out("&6Status: &cDisabled");
+        CC.out("&7&m------------------");
     }
 
     public void registerlunar() {

@@ -38,7 +38,7 @@ public class CC {
     }
 
     public static String out(String out) {
-        Bukkit.getConsoleSender().sendMessage(translate("&6" + out));
+        Bukkit.getConsoleSender().sendMessage(translate(out));
         return out;
     }
 }
