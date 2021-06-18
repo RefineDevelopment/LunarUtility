@@ -1,2 +1,17 @@
 # LunarUtility
-Plugin that uses LunarClient's API.
+Made this plugin because most LunarClientAPI plugins are all using lunar's old/non-official API.
+This is also for devs who don't know how to use lunar's api so feel free using this.
+Am still learning java and this is my first open sourced project.
+Note: If you wanna use this for your server and don't know how to change stuff, shoot me a DM on discord @Dubai#1454 and I'll help you for free.
+
+# Waypoints
+![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
+
+# Cooldowns
+![image](https://user-images.githubusercontent.com/42650369/122611822-0c4bdb80-d093-11eb-8887-81d2f3fe510b.png)
+
+# Command
+![image](https://user-images.githubusercontent.com/42650369/122611909-3a312000-d093-11eb-947e-0f81f10d6b7b.png)
+
+# Supported Versions
+Should work on 1.7 & 1.8 (I only tested it on 1.8 so if it doesn't work on 1.7 DM me to update this)
