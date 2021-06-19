@@ -16,7 +16,7 @@ import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 public class LunarListener implements Listener {
 
     @EventHandler
-    private void PearlCooldown(ProjectileLaunchEvent event) {
+    private void pearlcooldown(ProjectileLaunchEvent event) {
         if (event.getEntity() instanceof EnderPearl) {
             Player player = (Player) event.getEntity().getShooter();
 
@@ -25,7 +25,7 @@ public class LunarListener implements Listener {
     }
 
     @EventHandler
-    private void GappleCooldown(PlayerItemConsumeEvent event) {
+    private void gapplecooldown(PlayerItemConsumeEvent event) {
         if (event.getItem().getType().equals(Material.GOLDEN_APPLE)) {
             Player player = event.getPlayer();
 
@@ -34,7 +34,7 @@ public class LunarListener implements Listener {
     }
 
     @EventHandler
-    private void Waypoint(PlayerJoinEvent event) {
+    private void waypoint(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
         LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);
