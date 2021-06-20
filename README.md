@@ -24,3 +24,4 @@ You MUST use this [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/
 
 # Command
 ![image](https://user-images.githubusercontent.com/42650369/122611909-3a312000-d093-11eb-947e-0f81f10d6b7b.png)
+.
