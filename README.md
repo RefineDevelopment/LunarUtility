@@ -6,8 +6,15 @@ Note: If you wanna use this for your server and don't know how to change stuff, 
 
 I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
 
-# Depend
+# Dependancies
 This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
+
+1.7 or 1.8 spigot (I only tested it on 1.8 so if it doesn't work on 1.7 DM me to update this)
+
+# Compile
+To compile you need all the dependancies listed the pom.xml.
+
+You MUST use this [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) lib for the lunar API or else it wont work!
 
 # Waypoints
 ![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
@@ -17,6 +24,4 @@ This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarCl
 
 # Command
 ![image](https://user-images.githubusercontent.com/42650369/122611909-3a312000-d093-11eb-947e-0f81f10d6b7b.png)
-
-# Supported Versions
-Should work on 1.7 & 1.8 (I only tested it on 1.8 so if it doesn't work on 1.7 DM me to update this)
+.
