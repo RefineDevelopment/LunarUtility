@@ -44,7 +44,7 @@ public class LunarCommand extends BaseCommand {
     }
 
     @Command(name = "lunarclient.reload", aliases = {"lc.reload", "lunar.reload"})
-    private void onReloadCommand(CommandArgs command) {
+    private void ReloadCommand(CommandArgs command) {
         Player player = command.getPlayer();
         if (!player.hasPermission("lunar.reload") || !player.isOp()) {
             player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.MAIN.PERMISSION")));

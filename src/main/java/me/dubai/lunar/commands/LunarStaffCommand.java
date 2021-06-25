@@ -28,6 +28,8 @@ public class LunarStaffCommand extends BaseCommand {
                 LunarClientAPI.getInstance().giveAllStaffModules(target);
                 player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.LUNAR-STAFF-COMMAND.TARGET"))
                         .replace("<target>", target.getDisplayName()));
+                target.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.LUNAR-STAFF-COMMAND.TO-TARGET"))
+                        .replace("<player>", player.getDisplayName()));
             } else {
                 player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.MAIN.OFFLINE")));
             }
