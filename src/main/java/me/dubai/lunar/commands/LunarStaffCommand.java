@@ -20,6 +20,7 @@ public class LunarStaffCommand extends BaseCommand {
         if (args.length == 0) {
             LunarClientAPI.getInstance().giveAllStaffModules(player);
             player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.LUNAR-STAFF-COMMAND.PLAYER")));
+            return;
         }
 
         Player target = Bukkit.getPlayer(args[0]);

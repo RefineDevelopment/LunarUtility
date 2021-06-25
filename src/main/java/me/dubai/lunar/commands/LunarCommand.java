@@ -29,22 +29,23 @@ public class LunarCommand extends BaseCommand {
 
         Player target = Bukkit.getPlayer(args[0]);
         if (args.length == 1) {
-            if (target != null) {
-                boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
-                String lunar = (lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON"));
-                String message = CC.translate(ConfigFile.getConfig().getString("MESSAGES.LUNAR-COMMAND.TARGET"))
-                        .replace("<target>", target.getDisplayName())
-                        .replace("<status>", lunar);
-
-                player.sendMessage(message);
-            } else {
+            if (target == null) {
                 player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.MAIN.OFFLINE")));
+                return;
             }
+
+            boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
+            String lunar = lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON");
+            String message = CC.translate(ConfigFile.getConfig().getString("MESSAGES.LUNAR-COMMAND.TARGET"))
+                    .replace("<target>", target.getName())
+                    .replace("<status>", lunar);
+
+            player.sendMessage(message);
         }
     }
 
     @Command(name = "lunarclient.reload", aliases = {"lc.reload", "lunar.reload"})
-    private void ReloadCommand(CommandArgs command) {
+    public void reload(CommandArgs command) {
         Player player = command.getPlayer();
         if (!player.hasPermission("lunar.reload") || !player.isOp()) {
             player.sendMessage(CC.translate(ConfigFile.getConfig().getString("MESSAGES.MAIN.PERMISSION")));
@@ -54,4 +55,4 @@ public class LunarCommand extends BaseCommand {
         }
     }
 }
-//TODO: Make this code cleaner
+//TODO: Make this code cleaner because its looking so damn bad
