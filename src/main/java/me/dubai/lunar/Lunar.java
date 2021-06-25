@@ -1,12 +1,13 @@
 package me.dubai.lunar;
 
 import lombok.Getter;
-import org.bukkit.*;
-import org.bukkit.plugin.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import me.dubai.lunar.utils.*;
 import me.dubai.lunar.commands.*;
 import me.dubai.lunar.listeners.*;
 import java.util.concurrent.TimeUnit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.dubai.lunar.utils.command.CommandFramework;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
@@ -24,31 +25,23 @@ public class Lunar extends JavaPlugin {
         instance = this;
         commandFramework = new CommandFramework(this);
         saveDefaultConfig();
-        saveConfig();
-        reloadConfig();
         registerlunar();
-        CC.out("&7&m------------------");
-        CC.out("&6LunarUtilities &ev1");
-        CC.out("&6Developer: &eDubaiGamer");
-        CC.out("&6Status: &aEnabled");
-        CC.out("&7&m------------------");
+        CC.StartupMessage();
     }
 
     @Override
     public void onDisable() {
         instance = null;
-        CC.out("&7&m------------------");
-        CC.out("&6LunarUtilities &ev1");
-        CC.out("&6Developer: &eDubaiGamer");
-        CC.out("&6Status: &cDisabled");
-        CC.out("&7&m------------------");
+        CC.StopMessage();
     }
 
-    public void registerlunar() {
+    private void registerlunar() {
         int gapple = ConfigFile.getConfig().getInt("COOLDOWN.ENDERPEARL.DELAY");
         int enderpearl = ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY");
 
         commandFramework.registerCommands(new LunarCommand());
+        commandFramework.registerCommands(new LunarStaffCommand());
+
         LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", gapple, TimeUnit.SECONDS, Material.ENDER_PEARL));
         LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", enderpearl, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
 
@@ -56,3 +49,4 @@ public class Lunar extends JavaPlugin {
         pm.registerEvents(new LunarListener(), this);
     }
 }
+//TODO: Add a toggleable option for the cooldowns, Add a config handler to make the code look cleaner.
