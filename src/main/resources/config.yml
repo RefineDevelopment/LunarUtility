@@ -6,6 +6,8 @@
 COOLDOWN:
   ENDERPEARL:
     DELAY: 16
+  GAPPLE:
+    DELAY: 5
 #Don't set the cooldown to 0 or else the plugin wont work!
 MESSAGES:
   MAIN:
