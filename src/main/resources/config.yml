@@ -1,5 +1,31 @@
+########################
+#    LunarUtility V1.1 #
+#     By Dubai#1454    #
+########################
+
 COOLDOWN:
-  GAPPLE:
-    DELAY: 10
   ENDERPEARL:
     DELAY: 16
+  GAPPLE:
+    DELAY: 5
+#Don't set the cooldown to 0 or else the plugin wont work!
+MESSAGES:
+  MAIN:
+    PERMISSION: "&cNo Permission."
+    RELOAD: "&6LunarUtility &ehas been reloaded."
+    OFFLINE: "&cThat player doesn't exist."
+  LUNAR-COMMAND:
+    #Available placeholders: <player> <status>
+    PLAYER: "&6You are currently <status> &eLunarClient."
+    #Available placeholders: <target> <status>
+    TARGET: "&e<target> &6is currently <status> &eLunarClient."
+  LUNAR-STAFF-COMMAND:
+    PLAYER: "&aYou have enabled all LunarClient staff mods."
+    TARGET: "&aYou have enabled all LunarClient staff mods for <target>."
+    #Available placeholders: <target>
+    TO-TARGET: "&aAll LunarClient mods have been enabled for you by <player>."
+
+WAYPOINTS:
+  ENABLED: true
+  NAME: "Spawn"
+  WORLD: "world"

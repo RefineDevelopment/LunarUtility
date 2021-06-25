@@ -1,7 +1,6 @@
 package me.dubai.lunar.utils;
 
 import java.io.File;
-
 import me.dubai.lunar.Lunar;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.configuration.file.YamlConfiguration;

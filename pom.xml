@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.dubai</groupId>
     <artifactId>lunarutility</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <name>LunarUtility</name>
 
@@ -36,13 +36,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>lunarclient-public</id>
-            <url>https://maven.moonsworth.com/repository/lunarclient-public</url>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
