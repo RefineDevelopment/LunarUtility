@@ -7,6 +7,8 @@ public class CC {
 
     public static String GREEN = ChatColor.GREEN.toString();
     public static String RED = ChatColor.RED.toString();
+    public static String WHITE = ChatColor.WHITE.toString();
+    public static String D_GRAY = ChatColor.DARK_GRAY.toString();
 
     public static String translate(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
