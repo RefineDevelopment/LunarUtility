@@ -38,7 +38,7 @@ public @interface Command {
      *
      * @return
      */
-    public String noPerm() default "§No Permission.";
+    public String noPerm() default "§cNo Permission.";
 
     /**
      * A list of alternate names that the command is executed under. See

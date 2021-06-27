@@ -22,23 +22,27 @@ public class LunarListener implements Listener {
     @EventHandler
     private void pearlcooldown(ProjectileLaunchEvent event) {
         if (event.getEntity() instanceof EnderPearl) {
-            Player player = (Player) event.getEntity().getShooter();
+            if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
+                Player player = (Player) event.getEntity().getShooter();
 
-            LunarClientAPICooldown.sendCooldown(player, "Enderpearl");
+                LunarClientAPICooldown.sendCooldown(player, "Enderpearl");
+            }
         }
     }
 
     @EventHandler
     private void gapplecooldown(PlayerItemConsumeEvent event) {
         if (event.getItem().getType().equals(Material.GOLDEN_APPLE)) {
-            Player player = event.getPlayer();
+            if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+                Player player = event.getPlayer();
 
-            LunarClientAPICooldown.sendCooldown(player, "Gapple");
+                LunarClientAPICooldown.sendCooldown(player, "Gapple");
+            }
         }
     }
 
     @EventHandler
-    public void waypoint(PlayerJoinEvent event) {
+    private void waypoint(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String name = ConfigFile.getConfig().getString("WAYPOINTS.NAME");
         String world = ConfigFile.getConfig().getString("WAYPOINTS.WORLD");

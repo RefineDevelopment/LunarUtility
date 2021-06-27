@@ -1,17 +1,19 @@
 ########################
-#    LunarUtility V1.1 #
+#  LunarUtility V1.1.2 #
 #     By Dubai#1454    #
 ########################
 
 COOLDOWN:
   ENDERPEARL:
+    ENABLE: true
     DELAY: 16
   GAPPLE:
+    ENABLE: true
     DELAY: 5
 #Don't set the cooldown to 0 or else the plugin wont work!
+#You have to restart the server whenever you change the delay. (not possible to fix)
 MESSAGES:
   MAIN:
-    PERMISSION: "&cNo Permission."
     RELOAD: "&6LunarUtility &ehas been reloaded."
     OFFLINE: "&cThat player doesn't exist."
   LUNAR-COMMAND:

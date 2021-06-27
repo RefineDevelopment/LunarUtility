@@ -36,17 +36,22 @@ public class Lunar extends JavaPlugin {
     }
 
     private void registerlunar() {
-        int gapple = ConfigFile.getConfig().getInt("COOLDOWN.ENDERPEARL.DELAY");
-        int enderpearl = ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY");
+        int gapple = ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY");
+        int enderpearl = ConfigFile.getConfig().getInt("COOLDOWN.ENDERPEARL.DELAY");
 
         commandFramework.registerCommands(new LunarCommand());
         commandFramework.registerCommands(new LunarStaffCommand());
 
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", gapple, TimeUnit.SECONDS, Material.ENDER_PEARL));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", enderpearl, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
-
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new LunarListener(), this);
+
+        if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
+            LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", enderpearl, TimeUnit.SECONDS, Material.ENDER_PEARL));
+
+            if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+                LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
+            }
+        }
     }
 }
-//TODO: Add a toggleable option for the cooldowns, Add a config handler to make the code look cleaner.
+//TODO: Add a config handler to make the code look cleaner.

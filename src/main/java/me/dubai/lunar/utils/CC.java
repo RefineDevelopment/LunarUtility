@@ -7,8 +7,6 @@ public class CC {
 
     public static String GREEN = ChatColor.GREEN.toString();
     public static String RED = ChatColor.RED.toString();
-    public static String WHITE = ChatColor.WHITE.toString();
-    public static String D_GRAY = ChatColor.DARK_GRAY.toString();
 
     public static String translate(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
@@ -21,7 +19,7 @@ public class CC {
 
     public static void StartupMessage() {
         out("&7&m------------------");
-        out("&6LunarUtility &ev1.1");
+        out("&6LunarUtility &ev1.1.2");
         out("&6Developer: &eDubaiGamer");
         out("&6Status: &aEnabled");
         out("&7&m------------------");
@@ -29,7 +27,7 @@ public class CC {
 
     public static void StopMessage() {
         out("&7&m------------------");
-        out("&6LunarUtility &ev1.1");
+        out("&6LunarUtility &ev1.1.2");
         out("&6Developer: &eDubaiGamer");
         out("&6Status: &cDisabled");
         out("&7&m------------------");
