@@ -13,6 +13,7 @@ import me.dubai.lunar.utils.command.CommandFramework;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 
+
 @Getter
 public class Lunar extends JavaPlugin {
 
@@ -28,6 +29,7 @@ public class Lunar extends JavaPlugin {
         registerlunar();
         CC.StartupMessage();
     }
+
 
     @Override
     public void onDisable() {
@@ -47,11 +49,10 @@ public class Lunar extends JavaPlugin {
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", enderpearl, TimeUnit.SECONDS, Material.ENDER_PEARL));
+        }
 
-            if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
-                LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
-            }
+        if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+            LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
     }
 }
-//TODO: Add a config handler to make the code look cleaner.
