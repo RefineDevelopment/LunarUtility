@@ -16,6 +16,10 @@ To compile you need all the dependancies listed the pom.xml.
 
 You MUST use this [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) lib for the lunar API or else it wont work!
 
+# Staff Mods
+![image](https://user-images.githubusercontent.com/42650369/124383829-92952e00-dcdf-11eb-900b-937be1f4fba4.png)
+![image](https://user-images.githubusercontent.com/42650369/124383843-a04ab380-dcdf-11eb-93a0-635c814f8635.png)
+
 # Waypoints
 ![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
 
