@@ -20,6 +20,7 @@ public class Lunar extends JavaPlugin {
     @Getter
     public static Lunar instance;
     private CommandFramework commandFramework;
+    boolean papi = false;
 
     @Override
     public void onEnable() {
@@ -28,6 +29,7 @@ public class Lunar extends JavaPlugin {
         saveDefaultConfig();
         registerlunar();
         CC.StartupMessage();
+        papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
     }
 
 
@@ -54,5 +56,9 @@ public class Lunar extends JavaPlugin {
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
+    }
+
+    public boolean papi() {
+        return papi;
     }
 }

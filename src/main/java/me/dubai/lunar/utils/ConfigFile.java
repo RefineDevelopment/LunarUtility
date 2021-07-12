@@ -13,8 +13,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class ConfigFile extends YamlConfiguration {
 
     private static ConfigFile config;
-    private Plugin plugin;
-    private File configFile;
+    private final Plugin plugin;
+    private final File configFile;
 
     public static ConfigFile getConfig() {
         if (ConfigFile.config == null) {
