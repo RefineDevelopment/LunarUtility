@@ -4,11 +4,13 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import me.dubai.lunar.utils.*;
+import org.bukkit.entity.Player;
 import me.dubai.lunar.commands.*;
 import me.dubai.lunar.listeners.*;
 import java.util.concurrent.TimeUnit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.dubai.lunar.utils.command.CommandFramework;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
@@ -20,7 +22,7 @@ public class Lunar extends JavaPlugin {
     @Getter
     public static Lunar instance;
     private CommandFramework commandFramework;
-    boolean papi = false;
+    private boolean papi = false;
 
     @Override
     public void onEnable() {
@@ -37,6 +39,10 @@ public class Lunar extends JavaPlugin {
     public void onDisable() {
         instance = null;
         CC.StopMessage();
+    }
+
+    public String parsePapi(Player player, String text) {
+        return papi ? PlaceholderAPI.setPlaceholders(player, text) : text;
     }
 
     private void registerlunar() {
@@ -56,9 +62,5 @@ public class Lunar extends JavaPlugin {
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
-    }
-
-    public boolean papi() {
-        return papi;
     }
 }
