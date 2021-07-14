@@ -30,6 +30,11 @@ MESSAGES:
       - "<list>"
       - "&7&m-----------------------"
 
+NAMETAG:
+  ENABLE: true
+  FIRST: "&7[<status> &bLC&7]"
+  SECOND: "<player_name>" # use <player_displayname> for disguise support
+
 WAYPOINTS:
   ENABLED: true
   NAME: "Spawn"
