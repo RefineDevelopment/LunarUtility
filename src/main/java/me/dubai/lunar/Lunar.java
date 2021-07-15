@@ -36,7 +36,7 @@ public class Lunar extends JavaPlugin {
 
         if (papi) {
             new PlaceholderAPIHook().register();
-            Bukkit.getConsoleSender().sendMessage(CC.GREEN + "&aPlaceholder API expansion successfully registered.");
+            Bukkit.getConsoleSender().sendMessage(CC.GREEN + "Placeholder API expansion successfully registered.");
         }
     }
 
