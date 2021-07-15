@@ -3,6 +3,16 @@
 #     By Dubai#1454    #
 ########################
 
+NAMETAG:
+  ENABLE: true
+  FIRST: "&7[<status> &bLC&7]"
+  SECOND: "<player_name>" # use <player_displayname> for disguise support
+
+WAYPOINTS:
+  ENABLE: true
+  NAME: "Spawn"
+  WORLD: "world"
+
 COOLDOWN:
   ENDERPEARL:
     ENABLE: true
@@ -12,6 +22,7 @@ COOLDOWN:
     DELAY: 5
 #Don't set the cooldown to 0 or else the plugin wont work!
 #You have to restart the server whenever you change the delay. (not possible to fix)
+
 MESSAGES:
   MAIN:
     RELOAD: "&6LunarUtility &ehas been reloaded."
@@ -29,13 +40,3 @@ MESSAGES:
       - "&b&lLunarClient Users"
       - "<list>"
       - "&7&m-----------------------"
-
-NAMETAG:
-  ENABLE: true
-  FIRST: "&7[<status> &bLC&7]"
-  SECOND: "<player_name>" # use <player_displayname> for disguise support
-
-WAYPOINTS:
-  ENABLED: true
-  NAME: "Spawn"
-  WORLD: "world"

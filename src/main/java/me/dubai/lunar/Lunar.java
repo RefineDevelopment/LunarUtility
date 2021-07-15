@@ -1,6 +1,7 @@
 package me.dubai.lunar;
 
 import lombok.Getter;
+import me.dubai.lunar.hook.PlaceholderAPIHook;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import me.dubai.lunar.utils.*;
@@ -32,6 +33,11 @@ public class Lunar extends JavaPlugin {
         registerlunar();
         CC.StartupMessage();
         papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+
+        if (papi) {
+            new PlaceholderAPIHook().register();
+            Bukkit.getConsoleSender().sendMessage(CC.GREEN + "&aPlaceholder API expansion successfully registered.");
+        }
     }
 
 
@@ -39,10 +45,6 @@ public class Lunar extends JavaPlugin {
     public void onDisable() {
         instance = null;
         CC.StopMessage();
-    }
-
-    public String parsePapi(Player player, String text) {
-        return papi ? PlaceholderAPI.setPlaceholders(player, text) : text;
     }
 
     private void registerlunar() {
@@ -63,5 +65,9 @@ public class Lunar extends JavaPlugin {
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
+    }
+
+    public String parsePapi(Player player, String text) {
+        return papi ? PlaceholderAPI.setPlaceholders(player, text) : text;
     }
 }
