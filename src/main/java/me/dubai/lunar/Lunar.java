@@ -1,7 +1,6 @@
 package me.dubai.lunar;
 
 import lombok.Getter;
-import me.dubai.lunar.hook.PlaceholderAPIHook;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import me.dubai.lunar.utils.*;
@@ -12,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.dubai.lunar.hook.PlaceholderAPIHook;
 import me.dubai.lunar.utils.command.CommandFramework;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;

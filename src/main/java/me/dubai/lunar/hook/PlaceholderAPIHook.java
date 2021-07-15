@@ -1,9 +1,9 @@
 package me.dubai.lunar.hook;
 
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.dubai.lunar.utils.CC;
 import org.bukkit.entity.Player;
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
 

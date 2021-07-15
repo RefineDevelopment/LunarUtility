@@ -1,15 +1,15 @@
 package me.dubai.lunar.listeners;
 
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import me.dubai.lunar.Locale;
-import me.dubai.lunar.Lunar;
-import me.dubai.lunar.utils.CC;
-import me.dubai.lunar.utils.ConfigFile;
+import java.util.List;
 import org.bukkit.Bukkit;
+import java.util.ArrayList;
+import me.dubai.lunar.Lunar;
+import me.dubai.lunar.Locale;
+import me.dubai.lunar.utils.CC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import java.util.ArrayList;
-import java.util.List;
+import me.dubai.lunar.utils.ConfigFile;
+import com.lunarclient.bukkitapi.LunarClientAPI;
 
 public class LCNametagsListener implements Listener {
 
