@@ -1,20 +1,26 @@
 package me.dubai.lunar;
 
-import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import me.dubai.lunar.utils.*;
-import org.bukkit.entity.Player;
-import me.dubai.lunar.commands.*;
-import me.dubai.lunar.listeners.*;
-import java.util.concurrent.TimeUnit;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.dubai.lunar.hook.PlaceholderAPIHook;
-import me.dubai.lunar.utils.command.CommandFramework;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
+import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
+import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
+import lombok.Getter;
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.dubai.lunar.commands.LunarCommand;
+import me.dubai.lunar.commands.LunarStaffCommand;
+import me.dubai.lunar.hook.PlaceholderAPIHook;
+import me.dubai.lunar.listeners.LCNametagsListener;
+import me.dubai.lunar.listeners.LunarListener;
+import me.dubai.lunar.utils.CC;
+import me.dubai.lunar.utils.ConfigFile;
+import me.dubai.lunar.utils.command.CommandFramework;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.concurrent.TimeUnit;
 
 
 @Getter
@@ -57,6 +63,15 @@ public class Lunar extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new LunarListener(), this);
         pm.registerEvents(new LCNametagsListener(), this);
+
+        if (ConfigFile.getConfig().contains("SERVER-RULES")) {
+            for (ServerRule rule : ServerRule.values()) {
+                if (ConfigFile.getConfig().contains("SERVER-RULES." + rule.name()) && ConfigFile.getConfig().isBoolean("SERVER-RULES." + rule.name())) {
+
+                    LunarClientAPIServerRule.setRule(rule, ConfigFile.getConfig().getBoolean("SERVER-RULES." + rule.name()));
+                }
+            }
+        }
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", enderpearl, TimeUnit.SECONDS, Material.ENDER_PEARL));

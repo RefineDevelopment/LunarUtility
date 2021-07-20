@@ -63,7 +63,7 @@ public class LunarCommand extends BaseCommand {
                     playerSB.append(CC.WHITE).append(all.getDisplayName()).append(CC.GRAY).append(", ");
             for (String messages : ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST"))
                 player.sendMessage(CC.translate(Lunar.getInstance().parsePapi(player, messages)
-                        .replace("<list>", (playerSB.toString().length() > 1) ? playerSB.substring(0, playerSB.toString().length() - 2) : "")));
+                        .replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : "")));
         })).start();
     }
 }

@@ -15,11 +15,11 @@ public enum Locale {
     LUNAR_TAG_2("NAMETAG.SECOND"),
     LUNAR_COMMAND_RELOAD("MESSAGES.MAIN.RELOAD");
 
+    private final String path;
+
     Locale(String path) {
         this.path = path;
     }
-
-    private final String path;
 
     public String format(Object... objects) {
         return (new MessageFormat(CC.translate(ConfigFile.getConfig().getString(this.path)))).format(objects);

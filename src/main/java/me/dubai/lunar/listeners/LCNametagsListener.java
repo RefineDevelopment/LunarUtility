@@ -18,7 +18,7 @@ public class LCNametagsListener implements Listener {
             for (Player all : Bukkit.getOnlinePlayers()) {
                 Bukkit.getOnlinePlayers().forEach(player -> LunarClientAPI.getInstance().overrideNametag(all, nametag(all, player), player));
             }
-        }, 0, 20);
+        }, 0, 40);
     }
 
     public List<String> nametag(Player target, Player viewer) {

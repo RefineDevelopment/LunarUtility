@@ -3,6 +3,7 @@ package me.dubai.lunar.listeners;
 import org.bukkit.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.entity.EnderPearl;
@@ -21,24 +22,21 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void pearlcooldown(ProjectileLaunchEvent event) {
-        if (event.getEntity() instanceof EnderPearl) {
-            if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
+        if (event.getEntity() instanceof EnderPearl && ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
                 Player player = (Player) event.getEntity().getShooter();
 
                 LunarClientAPICooldown.sendCooldown(player, "Enderpearl");
             }
-        }
     }
 
     @EventHandler
     private void gapplecooldown(PlayerItemConsumeEvent event) {
-        if (event.getItem().getType().equals(Material.GOLDEN_APPLE)) {
-            if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+        Material item = event.getItem().getType();
+        if (item.equals(Material.GOLDEN_APPLE) && ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
                 Player player = event.getPlayer();
 
                 LunarClientAPICooldown.sendCooldown(player, "Gapple");
             }
-        }
     }
 
     @EventHandler
