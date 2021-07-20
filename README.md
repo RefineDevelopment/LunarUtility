@@ -1,4 +1,7 @@
 # LunarUtility
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9194a83417de4c939f617d3f4d47b56f)](https://app.codacy.com/gh/GamerRealm/LunarUtility?utm_source=github.com&utm_medium=referral&utm_content=GamerRealm/LunarUtility&utm_campaign=Badge_Grade_Settings)
+
 Made this plugin because most LunarClientAPI plugins are all using lunar's old/non-official API.
 This is also for devs who don't know how to use lunar's api so feel free using this.
 Am still learning java and this is my first open sourced project.
