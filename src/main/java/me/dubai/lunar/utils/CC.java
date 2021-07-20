@@ -1,10 +1,8 @@
 package me.dubai.lunar.utils;
 
-import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-@UtilityClass
 public class CC {
 
     public static String GREEN = ChatColor.GREEN.toString();
