@@ -9,6 +9,15 @@ Note: If you wanna use this for your server and don't know how to change stuff, 
 
 I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
 
+## Recoding Soon
+LunarUtility will be recoded soon! 
+
+Code will be improved & new features will be added.
+
+There is no exact date of when it will be released/worked on.
+
+This does not mean that the latest version is buggy, it is stable and has no bugs!
+
 ## Dependancies
 This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
 
