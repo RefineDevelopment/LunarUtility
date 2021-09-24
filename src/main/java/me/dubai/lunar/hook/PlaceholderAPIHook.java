@@ -1,9 +1,9 @@
 package me.dubai.lunar.hook;
 
-import me.dubai.lunar.utils.CC;
-import org.bukkit.entity.Player;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.dubai.lunar.utils.CC;
+import org.bukkit.entity.Player;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
 
@@ -34,10 +34,8 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         // %lunar_status%
         if (identifier.equalsIgnoreCase("status")) {
             if (lunarclient) {
-                return CC.GREEN + "ON";
-            }
-
-            if (!lunarclient) {
+                return CC.GREEN + "on";
+            } else {
                 return CC.RED + "OFF";
             }
         }

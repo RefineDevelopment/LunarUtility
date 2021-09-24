@@ -1,8 +1,9 @@
 package me.dubai.lunar;
 
-import java.text.MessageFormat;
 import me.dubai.lunar.utils.CC;
 import me.dubai.lunar.utils.ConfigFile;
+
+import java.text.MessageFormat;
 
 public enum Locale {
     LUNAR_STAFF_COMMAND_PLAYER("MESSAGES.LUNAR-STAFF-COMMAND.PLAYER"),
@@ -12,7 +13,7 @@ public enum Locale {
     LUNAR_COMMAND_PLAYER("MESSAGES.LUNAR-COMMAND.PLAYER"),
     LUNAR_COMMAND_TARGET("MESSAGES.LUNAR-COMMAND.TARGET"),
     LUNAR_TAG_1("NAMETAG.FIRST"),
-    LUNAR_TAG_2("NAMETAG.SECOND"),
+    LUNAR_TAG_2("NAMETAG.SECOND.TAG"),
     LUNAR_COMMAND_RELOAD("MESSAGES.MAIN.RELOAD");
 
     private final String path;

@@ -12,6 +12,7 @@ import org.bukkit.help.HelpTopicComparator;
 import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -65,10 +66,10 @@ public class CommandFramework implements CommandExecutor {
      * Handles commands. Used in the onCommand method in your JavaPlugin class
      *
      * @param sender The {@link CommandSender} parsed from
-     *            onCommand
-     * @param cmd The {@link org.bukkit.command.Command} parsed from onCommand
-     * @param label The label parsed from onCommand
-     * @param args The arguments parsed from onCommand
+     *               onCommand
+     * @param cmd    The {@link org.bukkit.command.Command} parsed from onCommand
+     * @param label  The label parsed from onCommand
+     * @param args   The arguments parsed from onCommand
      * @return Always returns true for simplicity's sake in onCommand
      */
     public boolean handleCommand(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {

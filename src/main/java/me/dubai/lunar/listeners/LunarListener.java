@@ -21,8 +21,9 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void pearlcooldown(ProjectileLaunchEvent event) {
+        final Player player = (Player) event.getEntity().getShooter();
+
         if (event.getEntity() instanceof EnderPearl && ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
-            Player player = (Player) event.getEntity().getShooter();
 
             LunarClientAPICooldown.sendCooldown(player, "Enderpearl");
         }
@@ -30,9 +31,10 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void gapplecooldown(PlayerItemConsumeEvent event) {
-        Material item = event.getItem().getType();
+        final Material item = event.getItem().getType();
+        final Player player = event.getPlayer();
+
         if (item.equals(Material.GOLDEN_APPLE) && ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
-            Player player = event.getPlayer();
 
             LunarClientAPICooldown.sendCooldown(player, "Gapple");
         }
@@ -40,9 +42,9 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void waypoint(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        String name = ConfigFile.getConfig().getString("WAYPOINTS.NAME");
-        String world = ConfigFile.getConfig().getString("WAYPOINTS.WORLD");
+        final Player player = event.getPlayer();
+        final String name = ConfigFile.getConfig().getString("WAYPOINTS.NAME");
+        final String world = ConfigFile.getConfig().getString("WAYPOINTS.WORLD");
 
         if (ConfigFile.getConfig().getBoolean("WAYPOINTS.ENABLED")) {
             LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);

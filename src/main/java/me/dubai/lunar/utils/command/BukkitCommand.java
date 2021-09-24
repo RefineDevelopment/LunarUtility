@@ -15,7 +15,6 @@ import java.util.List;
  * commands without plugin.yml
  *
  * @author minnymin3
- *
  */
 public class BukkitCommand extends org.bukkit.command.Command {
 

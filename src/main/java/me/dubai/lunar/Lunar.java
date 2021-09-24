@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class Lunar extends JavaPlugin {
 
     @Getter
-    public static Lunar instance;
+    private static Lunar instance;
     private CommandFramework commandFramework;
     private boolean papi = false;
 

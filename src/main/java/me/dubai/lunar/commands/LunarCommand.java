@@ -1,15 +1,15 @@
 package me.dubai.lunar.commands;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import me.dubai.lunar.Locale;
+import me.dubai.lunar.Lunar;
 import me.dubai.lunar.utils.CC;
 import me.dubai.lunar.utils.ConfigFile;
-import org.bukkit.Bukkit;
-import me.dubai.lunar.Lunar;
-import me.dubai.lunar.Locale;
-import org.bukkit.entity.Player;
-import me.dubai.lunar.utils.command.Command;
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import me.dubai.lunar.utils.command.CommandArgs;
 import me.dubai.lunar.utils.command.BaseCommand;
+import me.dubai.lunar.utils.command.Command;
+import me.dubai.lunar.utils.command.CommandArgs;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class LunarCommand extends BaseCommand {
 
@@ -19,9 +19,9 @@ public class LunarCommand extends BaseCommand {
         String[] args = cmd.getArgs();
 
         if (args.length == 0) {
-            boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(player);
-            String lunar = (lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON"));
-            String message = Locale.LUNAR_COMMAND_PLAYER.format();
+            final boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(player);
+            final String lunar = (lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON"));
+            final String message = Locale.LUNAR_COMMAND_PLAYER.format();
 
             player.sendMessage(Lunar.getInstance().parsePapi(player, message)
                     .replace("<player>", player.getDisplayName())
@@ -36,9 +36,9 @@ public class LunarCommand extends BaseCommand {
                 return;
             }
 
-            boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
-            String lunar = lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON");
-            String message = Locale.LUNAR_COMMAND_TARGET.format();
+            final boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
+            final String lunar = lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON");
+            final String message = Locale.LUNAR_COMMAND_TARGET.format();
 
             player.sendMessage(Lunar.getInstance().parsePapi(player, message).replace("<target>", target.getName()).replace("<status>", lunar));
         }
@@ -47,7 +47,7 @@ public class LunarCommand extends BaseCommand {
     @Command(name = "lunarclient.reload", permission = "lunar.reload", aliases = {"lc.reload", "lunar.reload"})
     public void reload(CommandArgs cmd) {
         Player player = cmd.getPlayer();
-        String message = Locale.LUNAR_COMMAND_RELOAD.format();
+        final String message = Locale.LUNAR_COMMAND_RELOAD.format();
 
         ConfigFile.getConfig().reload();
         player.sendMessage(Lunar.getInstance().parsePapi(player, message));
@@ -57,14 +57,18 @@ public class LunarCommand extends BaseCommand {
     public void users(CommandArgs cmd) {
         Player player = cmd.getPlayer();
 
-        (new Thread(() -> {
+        new Thread(() -> {
             StringBuilder playerSB = new StringBuilder();
-            for (Player all : Bukkit.getServer().getOnlinePlayers())
-                if (LunarClientAPI.getInstance().isRunningLunarClient(all))
+
+            for (Player all : Bukkit.getServer().getOnlinePlayers()) {
+                if (LunarClientAPI.getInstance().isRunningLunarClient(all)) {
                     playerSB.append(CC.WHITE).append(all.getDisplayName()).append(CC.GRAY).append(", ");
-            for (String messages : ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST"))
-                player.sendMessage(CC.translate(Lunar.getInstance().parsePapi(player, messages)
-                        .replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : "")));
-        })).start();
+
+                    for (String messages : ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST")) {
+                        player.sendMessage(CC.translate(Lunar.getInstance().parsePapi(player, messages).replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : "")));
+                    }
+                }
+            }
+        }).start();
     }
 }

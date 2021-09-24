@@ -6,7 +6,9 @@
 NAMETAG:
   ENABLE: true
   FIRST: "&7[<status> &bLC&7]"
-  SECOND: "<player_name>" # use <player_displayname> for disguise support
+  SECOND:
+    ENABLE: false
+    TAG: "<player_name>" # use <player_displayname> for disguise support
 
 SERVER-RULES:
   SERVER_HANDLES_WAYPOINTS: false
