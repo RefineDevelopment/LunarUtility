@@ -1,10 +1,22 @@
 # LunarUtility
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9194a83417de4c939f617d3f4d47b56f)](https://app.codacy.com/gh/GamerRealm/LunarUtility?utm_source=github.com&utm_medium=referral&utm_content=GamerRealm/LunarUtility&utm_campaign=Badge_Grade_Settings)
+
 Made this plugin because most LunarClientAPI plugins are all using lunar's old/non-official API.
 This is also for devs who don't know how to use lunar's api so feel free using this.
 Am still learning java and this is my first open sourced project.
 Note: If you wanna use this for your server and don't know how to change stuff, shoot me a DM on discord @Dubai#1454 and I'll help you for free.
 
 I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
+
+## Recoding Soon
+LunarUtility will be recoded soon! 
+
+Code will be improved & new features will be added.
+
+There is no exact date of when it will be released/worked on.
+
+This does not mean that the latest version is buggy, it is stable and has no bugs!
 
 ## Dependancies
 This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
