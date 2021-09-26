@@ -60,7 +60,7 @@ public class Lunar extends JavaPlugin {
         pm.registerEvents(new LunarListener(), this);
 
         if (ConfigFile.getConfig().getBoolean("NAMETAG.ENABLE")) {
-            pm.registerEvents(new LCNametagsListener(), this);
+            new LCNametagsListener();
         }
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {

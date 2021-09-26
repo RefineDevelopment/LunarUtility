@@ -39,7 +39,7 @@ public class LunarCommand extends BaseCommand {
     }
 
     @Command(name = "lunarclient.reload", permission = "lunar.reload", aliases = {"lc.reload", "lunar.reload"})
-    public void reload(CommandArgs cmd) {
+    public void onReloadCommand(CommandArgs cmd) {
         Player player = cmd.getPlayer();
         final String message = Locale.LUNAR_COMMAND_RELOAD.format();
 
@@ -48,7 +48,7 @@ public class LunarCommand extends BaseCommand {
     }
 
     @Command(name = "lunarclient.users", aliases = {"lc.users", "lunar.users", "lunarclient.online", "lc.online", "lunar.online", "lc.list", "lunar.list", "lunarclient.list"})
-    public void users(CommandArgs cmd) {
+    public void onUsersCommand(CommandArgs cmd) {
         Player player = cmd.getPlayer();
 
         new Thread(() -> {

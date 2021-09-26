@@ -7,12 +7,11 @@ import me.dubai.lunar.utils.CC;
 import me.dubai.lunar.utils.ConfigFile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LCNametagsListener implements Listener {
+public class LCNametagsListener {
 
     public LCNametagsListener() {
         Bukkit.getScheduler().runTaskTimer(Lunar.getInstance(), () -> Bukkit.getOnlinePlayers().forEach(all -> Bukkit.getOnlinePlayers().forEach(player -> LunarClientAPI.getInstance().overrideNametag(all, nametagSetup(all), player))), 0, 40);
