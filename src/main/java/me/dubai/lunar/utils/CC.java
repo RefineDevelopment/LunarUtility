@@ -1,7 +1,9 @@
 package me.dubai.lunar.utils;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 public class CC {
 
@@ -14,9 +16,13 @@ public class CC {
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 
-    public static String out(String out) {
+    public static void out(String out) {
         Bukkit.getConsoleSender().sendMessage(translate(out));
-        return out;
+    }
+
+    public static String CheckLC(Player player) {
+
+        return LunarClientAPI.getInstance().isRunningLunarClient(player) ? CC.translate(ConfigFile.getConfig().getString("OTHER.ENABLED")) : CC.translate(ConfigFile.getConfig().getString("OTHER.DISABLED"));
     }
 
     public static void StartupMessage() {

@@ -19,13 +19,9 @@ public class LunarCommand extends BaseCommand {
         String[] args = cmd.getArgs();
 
         if (args.length == 0) {
-            final boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(player);
-            final String lunar = (lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON"));
-            final String message = Locale.LUNAR_COMMAND_PLAYER.format();
-
-            player.sendMessage(Lunar.getInstance().parsePapi(player, message)
+            player.sendMessage(Lunar.getInstance().parsePapi(player, Locale.LUNAR_COMMAND_PLAYER.format())
                     .replace("<player>", player.getDisplayName())
-                    .replace("<status>", lunar));
+                    .replace("<status>", CC.CheckLC(player)));
             return;
         }
 
@@ -36,11 +32,9 @@ public class LunarCommand extends BaseCommand {
                 return;
             }
 
-            final boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
-            final String lunar = lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON");
-            final String message = Locale.LUNAR_COMMAND_TARGET.format();
-
-            player.sendMessage(Lunar.getInstance().parsePapi(player, message).replace("<target>", target.getName()).replace("<status>", lunar));
+            player.sendMessage(Lunar.getInstance().parsePapi(player, Locale.LUNAR_COMMAND_TARGET.format())
+                    .replace("<target>", target.getName())
+                    .replace("<status>", CC.CheckLC(target)));
         }
     }
 
@@ -59,16 +53,10 @@ public class LunarCommand extends BaseCommand {
 
         new Thread(() -> {
             StringBuilder playerSB = new StringBuilder();
-
-            for (Player all : Bukkit.getServer().getOnlinePlayers()) {
-                if (LunarClientAPI.getInstance().isRunningLunarClient(all)) {
-                    playerSB.append(CC.WHITE).append(all.getDisplayName()).append(CC.GRAY).append(", ");
-
-                    for (String messages : ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST")) {
-                        player.sendMessage(CC.translate(Lunar.getInstance().parsePapi(player, messages).replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : "")));
-                    }
-                }
-            }
+            Bukkit.getServer().getOnlinePlayers().stream().filter(all -> LunarClientAPI.getInstance().isRunningLunarClient(all)).forEach(all -> {
+                playerSB.append(CC.WHITE).append(all.getDisplayName()).append(CC.GRAY).append(", ");
+                ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST").forEach(messages -> player.sendMessage(CC.translate(Lunar.getInstance().parsePapi(player, messages).replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : ""))));
+            });
         }).start();
     }
 }

@@ -2,8 +2,6 @@ package me.dubai.lunar;
 
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
-import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
-import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
 import lombok.Getter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.dubai.lunar.commands.LunarCommand;
@@ -35,8 +33,9 @@ public class Lunar extends JavaPlugin {
     public void onEnable() {
         instance = this;
         commandFramework = new CommandFramework(this);
-        saveDefaultConfig();
-        registerlunar();
+
+        this.saveDefaultConfig();
+        this.registerLunar();
         CC.StartupMessage();
         papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
@@ -53,32 +52,24 @@ public class Lunar extends JavaPlugin {
         CC.StopMessage();
     }
 
-    private void registerlunar() {
-        int gapple = ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY");
-        int enderpearl = ConfigFile.getConfig().getInt("COOLDOWN.ENDERPEARL.DELAY");
-
+    private void registerLunar() {
         commandFramework.registerCommands(new LunarCommand());
         commandFramework.registerCommands(new LunarStaffCommand());
 
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new LunarListener(), this);
-        pm.registerEvents(new LCNametagsListener(), this);
 
-        if (ConfigFile.getConfig().contains("SERVER-RULES")) {
-            for (ServerRule rule : ServerRule.values()) {
-                if (ConfigFile.getConfig().contains("SERVER-RULES." + rule.name()) && ConfigFile.getConfig().isBoolean("SERVER-RULES." + rule.name())) {
-
-                    LunarClientAPIServerRule.setRule(rule, ConfigFile.getConfig().getBoolean("SERVER-RULES." + rule.name()));
-                }
-            }
+        if (ConfigFile.getConfig().getBoolean("NAMETAG.ENABLE")) {
+            pm.registerEvents(new LCNametagsListener(), this);
         }
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
-            LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", enderpearl, TimeUnit.SECONDS, Material.ENDER_PEARL));
+            LunarClientAPICooldown.registerCooldown(new LCCooldown("Enderpearl", ConfigFile.getConfig().getInt("COOLDOWN.ENDERPEARL.DELAY"), TimeUnit.SECONDS, Material.ENDER_PEARL));
         }
 
+
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
-            LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", gapple, TimeUnit.SECONDS, Material.GOLDEN_APPLE));
+            LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY"), TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
     }
 

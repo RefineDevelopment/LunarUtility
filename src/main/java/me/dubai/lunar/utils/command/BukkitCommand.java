@@ -19,7 +19,7 @@ import java.util.List;
 public class BukkitCommand extends org.bukkit.command.Command {
 
     private final Plugin owningPlugin;
-    private CommandExecutor executor;
+    private final CommandExecutor executor;
     protected BukkitCompleter completer;
 
     /**

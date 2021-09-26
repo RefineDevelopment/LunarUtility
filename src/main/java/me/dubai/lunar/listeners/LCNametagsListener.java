@@ -15,26 +15,23 @@ import java.util.List;
 public class LCNametagsListener implements Listener {
 
     public LCNametagsListener() {
-        Bukkit.getScheduler().runTaskTimer(Lunar.getInstance(), () -> {
-            for (Player all : Bukkit.getOnlinePlayers()) {
-                Bukkit.getOnlinePlayers().forEach(player -> LunarClientAPI.getInstance().overrideNametag(all, nametag(all), player));
-            }
-        }, 0, 40);
+        Bukkit.getScheduler().runTaskTimer(Lunar.getInstance(), () -> Bukkit.getOnlinePlayers().forEach(all -> Bukkit.getOnlinePlayers().forEach(player -> LunarClientAPI.getInstance().overrideNametag(all, nametagSetup(all), player))), 0, 40);
     }
 
-    public List<String> nametag(Player target) {
+    public List<String> nametagSetup(Player target) {
         List<String> tag = new ArrayList<>();
-        boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(target);
-        String lunar = lunarclient ? (CC.GREEN + "ON") : (CC.RED + "NOT ON");
+        final String lunar = (LunarClientAPI.getInstance().isRunningLunarClient(target) ? CC.translate(ConfigFile.getConfig().getString("OTHER.ENABLED")) : CC.translate(ConfigFile.getConfig().getString("OTHER.DISABLED")));
 
-        if (ConfigFile.getConfig().getString("NAMETAG.ENABLE").equals("true")) {
-            tag.add(Lunar.getInstance().parsePapi(target, Locale.LUNAR_TAG_1.format()).replace("<status>", lunar));
+        tag.add(Lunar.getInstance().parsePapi(target, Locale.LUNAR_TAG_1.format())
+                .replace("<player_displayname>", target.getDisplayName())
+                .replace("<player_name>", target.getName())
+                .replace("<status>", lunar));
 
-            if (ConfigFile.getConfig().getBoolean("NAMETAG.SECOND.ENABLE")) {
-                tag.add(Lunar.getInstance().parsePapi(target, Locale.LUNAR_TAG_2.format())
-                        .replace("<player_displayname>", target.getDisplayName())
-                        .replace("<player_name>", target.getName()));
-            }
+        if (ConfigFile.getConfig().getBoolean("NAMETAG.SECOND.ENABLE")) {
+            tag.add(Lunar.getInstance().parsePapi(target, Locale.LUNAR_TAG_2.format())
+                    .replace("<player_displayname>", target.getDisplayName())
+                    .replace("<player_name>", target.getName())
+                    .replace("<status>", lunar));
         }
         return tag;
     }

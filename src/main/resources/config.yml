@@ -4,24 +4,22 @@
 ########################
 
 NAMETAG:
-  ENABLE: true
+  ENABLE: true #Needs Restart
   FIRST: "&7[<status> &bLC&7]"
   SECOND:
     ENABLE: false
     TAG: "<player_name>" # use <player_displayname> for disguise support
-
-SERVER-RULES:
-  SERVER_HANDLES_WAYPOINTS: false
-  LEGACY_ENCHANTING: false
-  COMPETITIVE_GAME: false
-  SHADERS_DISABLED: false
-  LEGACY_COMBAT: false
 
 WAYPOINTS:
   ENABLE: true
   NAME: "Spawn"
   WORLD: "world"
 
+OTHER:
+  ENABLED: "&aON"
+  DISABLED: "&cOFF"
+
+#Disabled cooldowns for 1.9+ because of LC API Issue (Already reported to devs)
 COOLDOWN:
   ENDERPEARL:
     ENABLE: true
@@ -30,7 +28,7 @@ COOLDOWN:
     ENABLE: true
     DELAY: 5
 #Don't set the cooldown to 0 or else the plugin wont work!
-#You have to restart the server whenever you change the delay. (not possible to fix)
+#You have to restart the server whenever you change the delay.
 
 MESSAGES:
   MAIN:

@@ -8,7 +8,6 @@ import java.io.File;
 
 /**
  * Credits to RisasDev
- * Am a noob at configuration stuff because I usually don't make my stuff configurable.
  */
 
 public class ConfigFile extends YamlConfiguration {

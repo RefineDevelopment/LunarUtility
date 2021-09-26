@@ -29,17 +29,13 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
-        boolean lunarclient = LunarClientAPI.getInstance().isRunningLunarClient(player);
 
         // %lunar_status%
         if (identifier.equalsIgnoreCase("status")) {
-            if (lunarclient) {
-                return CC.GREEN + "on";
-            } else {
-                return CC.RED + "OFF";
+            if (LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+                return CC.CheckLC(player);
             }
         }
-
         return null;
     }
 }
