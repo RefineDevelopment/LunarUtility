@@ -2,44 +2,81 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9194a83417de4c939f617d3f4d47b56f)](https://app.codacy.com/gh/GamerRealm/LunarUtility?utm_source=github.com&utm_medium=referral&utm_content=GamerRealm/LunarUtility&utm_campaign=Badge_Grade_Settings)
 
-Made this plugin because most LunarClientAPI plugins are all using lunar's old/non-official API.
-This is also for devs who don't know how to use lunar's api so feel free using this.
-Am still learning java and this is my first open sourced project.
-Note: If you wanna use this for your server and don't know how to change stuff, shoot me a DM on discord @Dubai#1454 and I'll help you for free.
-
-I'll probably be updating this more after my exams and add features like staff mods, nametags (with papi support), etc.
-
-## Recoding Soon
-LunarUtility will be recoded soon! 
-
-Code will be improved & new features will be added.
-
-There is no exact date of when it will be released/worked on.
-
-This does not mean that the latest version is buggy, it is stable and has no bugs!
+This plugin was my first ever open source project. The main purpose of this project is for people who would like to use LunarClient's API features and implement them into their server or have an idea of how it works. This project will be updated often until I consider it complete or I am no longer able to continue updating it.
 
 ## Dependancies
-This plugin requires Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
+This plugin depends on Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
+Insert the jar into your plugins folder aswell as the LunarUtility jar.
 
-1.7 or 1.8 spigot (I only tested it on 1.8 so if it doesn't work on 1.7 DM me to update this)
+The plugin works on 1.7-1.16 although the cooldowns are disabled on versions newer than 1.8 because of the API having an issue with it.
+If there is any version that doesn't work with LunarUtility please DM me on discord Dubai#1454.
 
-### Compiling
-To compile you need all the dependancies listed the pom.xml.
+## Screenshots
 
-You MUST use this [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) lib for the lunar API or else it wont work!
-
-## Pictures
+### Commands
+![2021-10-26_11 25 54](https://user-images.githubusercontent.com/42650369/138830339-36b85f2c-5044-4953-b6da-4e67ee30fe84.png)
+![2021-10-26_11 27 38](https://user-images.githubusercontent.com/42650369/138829630-3c2fe296-c3b9-4aae-97f6-0f4b70db5f79.png)
 
 ### Staff Mods
-![image](https://user-images.githubusercontent.com/42650369/124383829-92952e00-dcdf-11eb-900b-937be1f4fba4.png)
-![image](https://user-images.githubusercontent.com/42650369/124383843-a04ab380-dcdf-11eb-93a0-635c814f8635.png)
+![2021-10-26_11 26 09](https://user-images.githubusercontent.com/42650369/138829302-7aeaad61-6cf4-426f-954a-43ace12a972f.png)
+![2021-10-26_11 26 23](https://user-images.githubusercontent.com/42650369/138829317-7a8c6015-e692-4a84-b1d4-395a286454bb.png)
+
 
 ### Waypoints
-![image](https://user-images.githubusercontent.com/42650369/122611509-7e6ff080-d092-11eb-968c-3b1e6f2d3f03.png)
+![2021-10-26_11 24 51](https://user-images.githubusercontent.com/42650369/138829478-606493b4-072c-429b-897a-c54948407b4b.png)
 
 ### Cooldowns
-![image](https://user-images.githubusercontent.com/42650369/122611822-0c4bdb80-d093-11eb-8887-81d2f3fe510b.png)
+![2021-10-26_11 26 59](https://user-images.githubusercontent.com/42650369/138830407-ce602bdd-9281-4744-9d3d-105af5223f3f.png)
 
-### Command
-![image](https://user-images.githubusercontent.com/42650369/122611909-3a312000-d093-11eb-947e-0f81f10d6b7b.png)
-.
+## Configuration
+```yaml
+########################
+#  LunarUtility V1.5   #
+#     By Dubai#1454    #
+########################
+
+NAMETAG:
+  ENABLE: true #Needs Restart
+  FIRST: "&7[<status> &bLC&7]"
+  SECOND:
+    ENABLE: false
+    TAG: "<player_name>" # use <player_displayname> for disguise support
+
+WAYPOINTS:
+  ENABLE: true
+  NAME: "Spawn"
+  WORLD: "world"
+
+OTHER:
+  ENABLED: "&aON"
+  DISABLED: "&cOFF"
+
+#Disabled cooldowns for 1.9+ because of LC API Issue (Already reported to devs)
+COOLDOWN:
+  ENDERPEARL:
+    ENABLE: true
+    DELAY: 16
+  GAPPLE:
+    ENABLE: true
+    DELAY: 5
+#Don't set the cooldown to 0 or else the plugin won't work!
+#You have to restart the server whenever you change the delay.
+
+MESSAGES:
+  MAIN:
+    RELOAD: "&6LunarUtility &ehas been reloaded."
+    OFFLINE: "&cThat player doesn't exist."
+  LUNAR-COMMAND:
+    PLAYER: "&6You are currently <status> &eLunarClient."
+    TARGET: "&e<target> &6is currently <status> &eLunarClient."
+  LUNAR-STAFF-COMMAND:
+    PLAYER: "&aYou have enabled all LunarClient staff mods."
+    TARGET: "&aYou have enabled all LunarClient staff mods for <target>."
+    TO-TARGET: "&aAll LunarClient mods have been enabled for you by <player>."
+  LUNAR-USERS-COMMAND:
+    LIST:
+      - "&7&m-----------------------"
+      - "&b&lLunarClient Users"
+      - "<list>"
+      - "&7&m-----------------------"
+```
