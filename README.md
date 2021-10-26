@@ -5,7 +5,7 @@
 This plugin was my first ever open source project. The main purpose of this project is for people who would like to use LunarClient's API features and implement them into their server or have an idea of how it works. This project will be updated often until I consider it complete or I am no longer able to continue updating it.
 
 ## Dependancies
-This plugin depends on Lunar's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
+This plugin depends on LunarClient's Official API [BukkitAPI](https://github.com/LunarClient/BukkitAPI/releases/tag/v1.0.1) or else it wont work!
 Insert the jar into your plugins folder aswell as the LunarUtility jar.
 
 The plugin works on 1.7-1.16 although the cooldowns are disabled on versions newer than 1.8 because of the API having an issue with it.
