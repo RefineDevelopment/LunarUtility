@@ -13,7 +13,6 @@ import me.dubai.lunar.utils.ConfigFile;
 import me.dubai.lunar.utils.command.CommandFramework;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.concurrent.TimeUnit;
@@ -54,14 +53,11 @@ public class Lunar extends JavaPlugin {
         commandFramework.registerCommands(new LunarCommand());
         commandFramework.registerCommands(new LunarStaffCommand());
 
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new LunarListener(), this);
+        Bukkit.getPluginManager().registerEvents(new LunarListener(), this);
 
-        //This is normal because it's the nametag updating. If there is any issue, I'll update it
-        this.getServer().getScheduler().runTaskTimer(this, new NametagTask(), 0, 20);
-
+        //This is normal because it's the nametag updating. If there is any issue, I'll update it.
         if (ConfigFile.getConfig().getBoolean("NAMETAG.ENABLE")) {
-            new NametagTask();
+            this.getServer().getScheduler().runTaskTimer(this, new NametagTask(), 0, 20);
         }
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {

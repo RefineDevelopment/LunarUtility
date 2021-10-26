@@ -1,5 +1,5 @@
 ########################
-#  LunarUtility V1.4   #
+#  LunarUtility V1.5   #
 #     By Dubai#1454    #
 ########################
 
@@ -27,7 +27,7 @@ COOLDOWN:
   GAPPLE:
     ENABLE: true
     DELAY: 5
-#Don't set the cooldown to 0 or else the plugin wont work!
+#Don't set the cooldown to 0 or else the plugin won't work!
 #You have to restart the server whenever you change the delay.
 
 MESSAGES:

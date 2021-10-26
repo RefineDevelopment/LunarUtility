@@ -3,13 +3,14 @@ package me.dubai.lunar.hook;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import static me.dubai.lunar.utils.Utils.checkLC;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "lunar";
     }
 
@@ -19,12 +20,12 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return "Dubai";
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return "1.0";
     }
 

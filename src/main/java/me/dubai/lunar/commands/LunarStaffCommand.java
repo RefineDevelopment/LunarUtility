@@ -24,7 +24,6 @@ public class LunarStaffCommand extends BaseCommand {
         }
 
         Player target = Bukkit.getPlayer(args[0]);
-
         if (args.length == 1) {
             if (target != null) {
                 LunarClientAPI.getInstance().giveAllStaffModules(target);

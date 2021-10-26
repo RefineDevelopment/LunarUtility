@@ -43,12 +43,10 @@ public class LunarListener implements Listener {
     @EventHandler
     private void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        final String name = ConfigFile.getConfig().getString("WAYPOINTS.NAME");
-        final String world = ConfigFile.getConfig().getString("WAYPOINTS.WORLD");
 
         if (ConfigFile.getConfig().getBoolean("WAYPOINTS.ENABLE")) {
             LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);
-            LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(name, Bukkit.getWorld(world).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
+            LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(ConfigFile.getConfig().getString("WAYPOINTS.NAME"), Bukkit.getWorld(ConfigFile.getConfig().getString("WAYPOINTS.WORLD")).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
         }
     }
 }

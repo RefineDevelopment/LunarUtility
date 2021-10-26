@@ -23,14 +23,14 @@ public @interface Command {
      *
      * @return
      */
-    public String name();
+    String name();
 
     /**
      * Gets the required permission of the command
      *
      * @return
      */
-    public String permission() default "";
+    String permission() default "";
 
     /**
      * The message sent to the player when they do not have permission to
@@ -38,7 +38,7 @@ public @interface Command {
      *
      * @return
      */
-    public String noPerm() default "§cNo Permission.";
+    String noPerm() default "§cNo Permission.";
 
     /**
      * A list of alternate names that the command is executed under. See
@@ -46,26 +46,26 @@ public @interface Command {
      *
      * @return
      */
-    public String[] aliases() default {};
+    String[] aliases() default {};
 
     /**
      * The description that will appear in /help of the command
      *
      * @return
      */
-    public String description() default "";
+    String description() default "";
 
     /**
      * The usage that will appear in /help (commandname)
      *
      * @return
      */
-    public String usage() default "";
+    String usage() default "";
 
     /**
      * Whether or not the command is available to players only
      *
      * @return
      */
-    public boolean inGameOnly() default false;
+    boolean inGameOnly() default false;
 }
