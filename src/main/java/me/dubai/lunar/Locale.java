@@ -1,6 +1,6 @@
 package me.dubai.lunar;
 
-import me.dubai.lunar.utils.CC;
+import me.dubai.lunar.utils.Color;
 import me.dubai.lunar.utils.ConfigFile;
 
 import java.text.MessageFormat;
@@ -22,7 +22,7 @@ public enum Locale {
         this.path = path;
     }
 
-    public String format(Object... objects) {
-        return (new MessageFormat(CC.translate(ConfigFile.getConfig().getString(this.path)))).format(objects);
+    public String messageFormat(Object... objects) {
+        return (new MessageFormat(Color.translate(ConfigFile.getConfig().getString(this.path)))).format(objects);
     }
 }

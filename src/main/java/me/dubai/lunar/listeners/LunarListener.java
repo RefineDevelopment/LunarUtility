@@ -5,8 +5,8 @@ import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
 import com.lunarclient.bukkitapi.object.LCWaypoint;
 import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
-import me.dubai.lunar.Lunar;
 import me.dubai.lunar.utils.ConfigFile;
+import me.dubai.lunar.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -22,18 +22,18 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void onPearlLaunch(ProjectileLaunchEvent event) {
-        final Player player = (Player) event.getEntity().getShooter();
-
-        if (Lunar.getInstance().getServer().getVersion().contains("1.7") || Lunar.getInstance().getServer().getVersion().contains("1.8")) {
+        if (Utils.isCompatible()) {
             if (event.getEntity() instanceof EnderPearl && ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
-                LunarClientAPICooldown.sendCooldown(player, "Enderpearl");
+                if (event.getEntity().getShooter() instanceof Player) {
+                    LunarClientAPICooldown.sendCooldown((Player) event.getEntity().getShooter(), "Enderpearl");
+                }
             }
         }
     }
 
     @EventHandler
     private void onGappleConsume(PlayerItemConsumeEvent event) {
-        if (Lunar.getInstance().getServer().getVersion().contains("1.7") || Lunar.getInstance().getServer().getVersion().contains("1.8")) {
+        if (Utils.isCompatible()) {
             if (event.getItem().getType().equals(Material.GOLDEN_APPLE) && ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
                 LunarClientAPICooldown.sendCooldown(event.getPlayer(), "Gapple");
             }

@@ -2,12 +2,13 @@ package me.dubai.lunar.commands;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.dubai.lunar.Locale;
-import me.dubai.lunar.Lunar;
 import me.dubai.lunar.utils.command.BaseCommand;
 import me.dubai.lunar.utils.command.Command;
 import me.dubai.lunar.utils.command.CommandArgs;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import static me.dubai.lunar.utils.Utils.parsePapi;
 
 public class LunarStaffCommand extends BaseCommand {
 
@@ -18,7 +19,7 @@ public class LunarStaffCommand extends BaseCommand {
 
         if (args.length == 0) {
             LunarClientAPI.getInstance().giveAllStaffModules(player);
-            player.sendMessage(Lunar.getInstance().parsePapi(player, Locale.LUNAR_STAFF_COMMAND_PLAYER.format()));
+            player.sendMessage(parsePapi(player, Locale.LUNAR_STAFF_COMMAND_PLAYER.messageFormat()));
             return;
         }
 
@@ -27,10 +28,10 @@ public class LunarStaffCommand extends BaseCommand {
         if (args.length == 1) {
             if (target != null) {
                 LunarClientAPI.getInstance().giveAllStaffModules(target);
-                player.sendMessage(Lunar.getInstance().parsePapi(player, Locale.LUNAR_STAFF_COMMAND_TARGET.format()).replace("<target>", target.getDisplayName()));
-                target.sendMessage(Lunar.getInstance().parsePapi(target, Locale.LUNAR_STAFF_COMMAND_TO_TARGET.format()).replace("<player>", player.getDisplayName()));
+                player.sendMessage(parsePapi(player, Locale.LUNAR_STAFF_COMMAND_TARGET.messageFormat()).replace("<target>", target.getDisplayName()));
+                target.sendMessage(parsePapi(target, Locale.LUNAR_STAFF_COMMAND_TO_TARGET.messageFormat()).replace("<player>", player.getDisplayName()));
             } else {
-                player.sendMessage(Locale.PLAYER_NOT_FOUND.format());
+                player.sendMessage(Locale.PLAYER_NOT_FOUND.messageFormat());
             }
         }
     }

@@ -42,20 +42,7 @@ public class ConfigFile extends YamlConfiguration {
         }
     }
 
-    public void save() {
-        try {
-            super.save(this.configFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void saveDefault() {
         this.plugin.saveResource("config.yml", false);
-    }
-
-    public void saveAll() {
-        this.save();
-        this.reload();
     }
 }

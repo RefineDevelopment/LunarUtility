@@ -3,18 +3,16 @@ package me.dubai.lunar;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import lombok.Getter;
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.dubai.lunar.commands.LunarCommand;
 import me.dubai.lunar.commands.LunarStaffCommand;
 import me.dubai.lunar.hook.PlaceholderAPIHook;
-import me.dubai.lunar.listeners.LCNametagsListener;
 import me.dubai.lunar.listeners.LunarListener;
-import me.dubai.lunar.utils.CC;
+import me.dubai.lunar.listeners.NametagTask;
+import me.dubai.lunar.utils.Color;
 import me.dubai.lunar.utils.ConfigFile;
 import me.dubai.lunar.utils.command.CommandFramework;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,8 +24,8 @@ public class Lunar extends JavaPlugin {
 
     @Getter
     private static Lunar instance;
+    public static boolean papi = false;
     private CommandFramework commandFramework;
-    private boolean papi = false;
 
     @Override
     public void onEnable() {
@@ -36,12 +34,12 @@ public class Lunar extends JavaPlugin {
 
         this.saveDefaultConfig();
         this.registerLunar();
-        CC.StartupMessage();
+        Color.onStartMessage();
         papi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
         if (papi) {
             new PlaceholderAPIHook().register();
-            Bukkit.getConsoleSender().sendMessage(CC.GREEN + "Placeholder API expansion successfully registered.");
+            Bukkit.getConsoleSender().sendMessage(Color.GREEN + "Placeholder API expansion successfully registered.");
         }
     }
 
@@ -49,7 +47,7 @@ public class Lunar extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
-        CC.StopMessage();
+        Color.onStopMessage();
     }
 
     private void registerLunar() {
@@ -59,8 +57,11 @@ public class Lunar extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new LunarListener(), this);
 
+        //This is normal because it's the nametag updating. If there is any issue, I'll update it
+        this.getServer().getScheduler().runTaskTimer(this, new NametagTask(), 0, 20);
+
         if (ConfigFile.getConfig().getBoolean("NAMETAG.ENABLE")) {
-            new LCNametagsListener();
+            new NametagTask();
         }
 
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
@@ -71,9 +72,5 @@ public class Lunar extends JavaPlugin {
         if (ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", ConfigFile.getConfig().getInt("COOLDOWN.GAPPLE.DELAY"), TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
-    }
-
-    public String parsePapi(Player player, String text) {
-        return papi ? PlaceholderAPI.setPlaceholders(player, text) : text;
     }
 }

@@ -8,6 +8,4 @@ public abstract class BaseCommand {
     public BaseCommand() {
         this.plugin.getCommandFramework().registerCommands(this);
     }
-
-    public abstract void onCommand(CommandArgs cmd);
 }

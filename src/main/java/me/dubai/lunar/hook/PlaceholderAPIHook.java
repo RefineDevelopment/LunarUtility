@@ -2,8 +2,9 @@ package me.dubai.lunar.hook;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.dubai.lunar.utils.CC;
 import org.bukkit.entity.Player;
+
+import static me.dubai.lunar.utils.Utils.checkLC;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
 
@@ -33,7 +34,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         // %lunar_status%
         if (identifier.equalsIgnoreCase("status")) {
             if (LunarClientAPI.getInstance().isRunningLunarClient(player)) {
-                return CC.CheckLC(player);
+                return checkLC(player);
             }
         }
         return null;
