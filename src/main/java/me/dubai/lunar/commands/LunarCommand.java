@@ -1,64 +1,63 @@
 package me.dubai.lunar.commands;
 
+import com.jonahseguin.drink.annotation.*;
 import com.lunarclient.bukkitapi.LunarClientAPI;
+import lombok.RequiredArgsConstructor;
 import me.dubai.lunar.Locale;
+import me.dubai.lunar.LunarUtility;
 import me.dubai.lunar.utils.Color;
-import me.dubai.lunar.utils.ConfigFile;
-import me.dubai.lunar.utils.command.BaseCommand;
-import me.dubai.lunar.utils.command.Command;
-import me.dubai.lunar.utils.command.CommandArgs;
+import me.dubai.lunar.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.dubai.lunar.utils.Utils.checkLC;
-import static me.dubai.lunar.utils.Utils.parsePapi;
+import java.io.File;
 
-public class LunarCommand extends BaseCommand {
+@RequiredArgsConstructor
+public class LunarCommand {
+    private final LunarUtility plugin;
 
-    @Command(name = "lunarclient", aliases = {"lc", "lunar"})
-    public void onCommand(CommandArgs cmd) {
-        Player player = cmd.getPlayer();
-        String[] args = cmd.getArgs();
+    @Command(name = "", aliases = "check", desc = "Check if a player is using LunarClient", usage = "<player>")
+    public void onLunarCommand(@Sender Player player, @OptArg Player target) {
 
-        if (args.length == 0) {
-            player.sendMessage(parsePapi(player, Locale.LUNAR_COMMAND_PLAYER.messageFormat())
+        if (target == null) {
+            player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_COMMAND_PLAYER.messageFormat())
                     .replace("<player>", player.getDisplayName())
-                    .replace("<status>", checkLC(player)));
-            return;
-        }
-
-        Player target = Bukkit.getPlayer(args[0]);
-        if (args.length == 1) {
-            if (target == null) {
-                player.sendMessage(Locale.PLAYER_NOT_FOUND.messageFormat());
-                return;
-            }
-
-            player.sendMessage(parsePapi(player, Locale.LUNAR_COMMAND_TARGET.messageFormat())
+                    .replace("<status>", Utils.checkLC(player)));
+        } else {
+            player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_COMMAND_TARGET.messageFormat())
                     .replace("<target>", target.getName())
-                    .replace("<status>", checkLC(target)));
+                    .replace("<status>", Utils.checkLC(target)));
         }
     }
 
-    @Command(name = "lunarclient.reload", permission = "lunar.reload", aliases = {"lc.reload", "lunar.reload"})
-    public void onReloadCommand(CommandArgs cmd) {
-        Player player = cmd.getPlayer();
-        final String message = Locale.LUNAR_COMMAND_RELOAD.messageFormat();
-
-        ConfigFile.getConfig().reload();
-        player.sendMessage(parsePapi(player, message));
+    @Command(name = "reload", desc = "Reload the config file")
+    @Require(value = "lunar.reload")
+    public void onLunarReloadCommand(@Sender CommandSender sender) {
+        try {
+            plugin.getConfig().load(new File(plugin.getDataFolder(), "config.yml"));
+            sender.sendMessage(Locale.LUNAR_COMMAND_RELOAD.messageFormat());
+        } catch (Exception e) {
+            sender.sendMessage(Color.RED + "An error occurred!");
+        }
     }
 
-    @Command(name = "lunarclient.users", aliases = {"lc.users", "lunar.users", "lunarclient.online", "lc.online", "lunar.online", "lc.list", "lunar.list", "lunarclient.list"})
-    public void onUsersCommand(CommandArgs cmd) {
-        Player player = cmd.getPlayer();
+    @Command(name = "users", aliases = {"online", "lc"}, desc = "View a list of players using LunarClient")
+    public void onLunarUsersCommand(@Sender CommandSender sender) {
+        StringBuilder playerList = new StringBuilder();
 
-        StringBuilder playerSB = new StringBuilder();
-        Bukkit.getServer().getOnlinePlayers().stream().filter(all -> LunarClientAPI.getInstance().isRunningLunarClient(all)).forEach(all -> {
-            playerSB.append(Color.WHITE).append(all.getDisplayName()).append(Color.GRAY).append(", ");
-            ConfigFile.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.LIST")
-                    .forEach(messages -> player.sendMessage(Color.translate(parsePapi(player, messages)
-                            .replace("<list>", (playerSB.length() > 1) ? playerSB.substring(0, playerSB.length() - 2) : ""))));
+        Bukkit.getOnlinePlayers().forEach(players -> {
+            if (LunarClientAPI.getInstance().getPlayersRunningLunarClient().contains(players)) {
+                if (playerList.length() > 0) {
+                    playerList.append(Locale.LUNAR_USERS_SEPERATOR.messageFormat());
+                }
+                playerList.append(players.getName());
+            }
         });
+
+        plugin.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.MESSAGE").stream().map(list -> Color.translate(list
+                        .replace("<totalUsers>", String.valueOf(LunarClientAPI.getInstance().getPlayersRunningLunarClient().size()))
+                        .replace("<playerList>", playerList)))
+                .forEach(sender::sendMessage);
     }
 }

@@ -1,13 +1,14 @@
 ########################
-#  LunarUtility V1.5   #
+#  LunarUtility V2.0   #
 #     By Dubai#1454    #
 ########################
 
 NAMETAG:
   ENABLE: true #Needs Restart
+  TICKS: "40" #1 second = 20 ticks | Every x seconds the nametag should update
   FIRST: "&7[<status> &bLC&7]"
   SECOND:
-    ENABLE: false
+    ENABLE: true
     TAG: "<player_name>" # use <player_displayname> for disguise support
 
 WAYPOINTS:
@@ -25,10 +26,14 @@ COOLDOWN:
     ENABLE: true
     DELAY: 16
   GAPPLE:
-    ENABLE: true
+    ENABLE: false
     DELAY: 5
 #Don't set the cooldown to 0 or else the plugin won't work!
 #You have to restart the server whenever you change the delay.
+
+REQUIRE-LUNAR:
+  ENABLED: false
+  MESSAGE: "&cLunar Client is required to play on the server! <space> &cDownload at &olunarclient.com/download" #<space> adds a new line
 
 MESSAGES:
   MAIN:
@@ -42,8 +47,9 @@ MESSAGES:
     TARGET: "&aYou have enabled all LunarClient staff mods for <target>."
     TO-TARGET: "&aAll LunarClient mods have been enabled for you by <player>."
   LUNAR-USERS-COMMAND:
-    LIST:
+    SEPERATOR: "&7, "
+    MESSAGE:
       - "&7&m-----------------------"
-      - "&b&lLunarClient Users"
-      - "<list>"
+      - "&b&lLunarClient Users &7[<totalUsers>/100]"
+      - "<playerList>"
       - "&7&m-----------------------"

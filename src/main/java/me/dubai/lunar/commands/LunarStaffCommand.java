@@ -1,37 +1,26 @@
 package me.dubai.lunar.commands;
 
+import com.jonahseguin.drink.annotation.Command;
+import com.jonahseguin.drink.annotation.OptArg;
+import com.jonahseguin.drink.annotation.Require;
+import com.jonahseguin.drink.annotation.Sender;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.dubai.lunar.Locale;
-import me.dubai.lunar.utils.command.BaseCommand;
-import me.dubai.lunar.utils.command.Command;
-import me.dubai.lunar.utils.command.CommandArgs;
-import org.bukkit.Bukkit;
+import me.dubai.lunar.utils.Utils;
 import org.bukkit.entity.Player;
 
-import static me.dubai.lunar.utils.Utils.parsePapi;
+public class LunarStaffCommand {
 
-public class LunarStaffCommand extends BaseCommand {
-
-    @Command(name = "lunarstaffmode", permission = "lunarclient.staff", aliases = {"lcstaffmode", "lsm"})
-    public void onCommand(CommandArgs cmd) {
-        Player player = cmd.getPlayer();
-        String[] args = cmd.getArgs();
-
-        if (args.length == 0) {
+    @Command(name = "", desc = "Give a person Lunar staff mods", usage = "<player>")
+    @Require(value = "lunar.reload")
+    public void onLunarStaffModeCommand(@Sender Player player, @OptArg Player target) {
+        if (target == null) {
             LunarClientAPI.getInstance().giveAllStaffModules(player);
-            player.sendMessage(parsePapi(player, Locale.LUNAR_STAFF_COMMAND_PLAYER.messageFormat()));
-            return;
-        }
-
-        Player target = Bukkit.getPlayer(args[0]);
-        if (args.length == 1) {
-            if (target != null) {
-                LunarClientAPI.getInstance().giveAllStaffModules(target);
-                player.sendMessage(parsePapi(player, Locale.LUNAR_STAFF_COMMAND_TARGET.messageFormat()).replace("<target>", target.getDisplayName()));
-                target.sendMessage(parsePapi(target, Locale.LUNAR_STAFF_COMMAND_TO_TARGET.messageFormat()).replace("<player>", player.getDisplayName()));
-            } else {
-                player.sendMessage(Locale.PLAYER_NOT_FOUND.messageFormat());
-            }
+            player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_STAFF_COMMAND_PLAYER.messageFormat()));
+        } else {
+            LunarClientAPI.getInstance().giveAllStaffModules(target);
+            player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_STAFF_COMMAND_TARGET.messageFormat()).replace("<target>", target.getDisplayName()));
+            target.sendMessage(Utils.parsePapi(target, Locale.LUNAR_STAFF_COMMAND_TO_TARGET.messageFormat()).replace("<player>", player.getDisplayName()));
         }
     }
 }

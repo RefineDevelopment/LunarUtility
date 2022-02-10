@@ -1,5 +1,5 @@
 name: LunarUtility
-main: me.dubai.lunar.Lunar
+main: me.dubai.lunar.LunarUtility
 author: Dubai
 depend: [ LunarClient-API ]
 softdepend: [ PlaceholderAPI ]

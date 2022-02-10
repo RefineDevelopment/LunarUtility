@@ -1,21 +1,21 @@
 package me.dubai.lunar;
 
 import me.dubai.lunar.utils.Color;
-import me.dubai.lunar.utils.ConfigFile;
 
 import java.text.MessageFormat;
 
 public enum Locale {
-    LUNAR_STAFF_COMMAND_PLAYER("MESSAGES.LUNAR-STAFF-COMMAND.PLAYER"),
-    LUNAR_STAFF_COMMAND_TARGET("MESSAGES.LUNAR-STAFF-COMMAND.TARGET"),
-    LUNAR_STAFF_COMMAND_TO_TARGET("MESSAGES.LUNAR-STAFF-COMMAND.TO-TARGET"),
-    PLAYER_NOT_FOUND("MESSAGES.MAIN.OFFLINE"),
+    LUNAR_TAG_1("NAMETAG.FIRST"),
+    LUNAR_TAG_TICKS("NAMETAG.TICKS"),
+    LUNAR_TAG_2("NAMETAG.SECOND.TAG"),
+    LUNAR_KICK_MESSAGE("REQUIRE-LUNAR.MESSAGE"),
+    LUNAR_COMMAND_RELOAD("MESSAGES.MAIN.RELOAD"),
     LUNAR_COMMAND_PLAYER("MESSAGES.LUNAR-COMMAND.PLAYER"),
     LUNAR_COMMAND_TARGET("MESSAGES.LUNAR-COMMAND.TARGET"),
-    LUNAR_TAG_1("NAMETAG.FIRST"),
-    LUNAR_TAG_2("NAMETAG.SECOND.TAG"),
-    LUNAR_COMMAND_RELOAD("MESSAGES.MAIN.RELOAD");
-
+    LUNAR_USERS_SEPERATOR("MESSAGES.LUNAR-USERS-COMMAND.SEPERATOR"),
+    LUNAR_STAFF_COMMAND_PLAYER("MESSAGES.LUNAR-STAFF-COMMAND.PLAYER"),
+    LUNAR_STAFF_COMMAND_TARGET("MESSAGES.LUNAR-STAFF-COMMAND.TARGET"),
+    LUNAR_STAFF_COMMAND_TO_TARGET("MESSAGES.LUNAR-STAFF-COMMAND.TO-TARGET");
     private final String path;
 
     Locale(String path) {
@@ -23,6 +23,6 @@ public enum Locale {
     }
 
     public String messageFormat(Object... objects) {
-        return (new MessageFormat(Color.translate(ConfigFile.getConfig().getString(this.path)))).format(objects);
+        return (new MessageFormat(Color.translate(LunarUtility.getInstance().getConfig().getString(this.path)))).format(objects);
     }
 }

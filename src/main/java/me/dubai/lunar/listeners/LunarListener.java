@@ -5,7 +5,9 @@ import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
 import com.lunarclient.bukkitapi.object.LCWaypoint;
 import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
-import me.dubai.lunar.utils.ConfigFile;
+import lombok.RequiredArgsConstructor;
+import me.dubai.lunar.Locale;
+import me.dubai.lunar.LunarUtility;
 import me.dubai.lunar.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -18,12 +20,15 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+@RequiredArgsConstructor
 public class LunarListener implements Listener {
+    private final LunarUtility plugin;
 
     @EventHandler
     private void onPearlLaunch(ProjectileLaunchEvent event) {
+
         if (Utils.isCompatible()) {
-            if (event.getEntity() instanceof EnderPearl && ConfigFile.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
+            if (event.getEntity() instanceof EnderPearl && plugin.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
                 if (event.getEntity().getShooter() instanceof Player) {
                     LunarClientAPICooldown.sendCooldown((Player) event.getEntity().getShooter(), "Enderpearl");
                 }
@@ -33,8 +38,9 @@ public class LunarListener implements Listener {
 
     @EventHandler
     private void onGappleConsume(PlayerItemConsumeEvent event) {
+
         if (Utils.isCompatible()) {
-            if (event.getItem().getType().equals(Material.GOLDEN_APPLE) && ConfigFile.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+            if (event.getItem().getType().equals(Material.GOLDEN_APPLE) && plugin.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
                 LunarClientAPICooldown.sendCooldown(event.getPlayer(), "Gapple");
             }
         }
@@ -44,9 +50,15 @@ public class LunarListener implements Listener {
     private void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (ConfigFile.getConfig().getBoolean("WAYPOINTS.ENABLE")) {
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (!LunarClientAPI.getInstance().isRunningLunarClient(player) && plugin.getConfig().getBoolean("REQUIRE-LUNAR.ENABLED")) {
+                player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("\n", "<space>"));
+            }
+        }, 2 * 20L);
+
+        if (plugin.getConfig().getBoolean("WAYPOINTS.ENABLE")) {
             LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);
-            LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(ConfigFile.getConfig().getString("WAYPOINTS.NAME"), Bukkit.getWorld(ConfigFile.getConfig().getString("WAYPOINTS.WORLD")).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
+            LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(plugin.getConfig().getString("WAYPOINTS.NAME"), Bukkit.getWorld(plugin.getConfig().getString("WAYPOINTS.WORLD")).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
         }
     }
 }
