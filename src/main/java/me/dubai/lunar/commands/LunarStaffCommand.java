@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class LunarStaffCommand {
 
     @Command(name = "", desc = "Give a person Lunar staff mods", usage = "<player>")
-    @Require(value = "lunar.reload")
+    @Require(value = "lunar.staff")
     public void onLunarStaffModeCommand(@Sender Player player, @OptArg Player target) {
         if (target == null) {
             LunarClientAPI.getInstance().giveAllStaffModules(player);
