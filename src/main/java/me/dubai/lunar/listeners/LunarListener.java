@@ -25,29 +25,24 @@ public class LunarListener implements Listener {
     private final LunarUtility plugin;
 
     @EventHandler
-    private void onPearlLaunch(ProjectileLaunchEvent event) {
+    public void onPearlLaunch(ProjectileLaunchEvent event) {
+        if (!(event.getEntity().getShooter() instanceof Player)) return;
 
-        if (Utils.isCompatible()) {
-            if (event.getEntity() instanceof EnderPearl && plugin.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
-                if (event.getEntity().getShooter() instanceof Player) {
-                    LunarClientAPICooldown.sendCooldown((Player) event.getEntity().getShooter(), "Enderpearl");
-                }
-            }
+        if (Utils.isCompatible() && event.getEntity() instanceof EnderPearl && plugin.getConfig().getBoolean("COOLDOWN.ENDERPEARL.ENABLE")) {
+            LunarClientAPICooldown.sendCooldown((Player) event.getEntity().getShooter(), "Enderpearl");
         }
     }
 
     @EventHandler
-    private void onGappleConsume(PlayerItemConsumeEvent event) {
+    public void onGappleConsume(PlayerItemConsumeEvent event) {
 
-        if (Utils.isCompatible()) {
-            if (event.getItem().getType().equals(Material.GOLDEN_APPLE) && plugin.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
-                LunarClientAPICooldown.sendCooldown(event.getPlayer(), "Gapple");
-            }
+        if (Utils.isCompatible() && event.getItem().getType().equals(Material.GOLDEN_APPLE) && plugin.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
+            LunarClientAPICooldown.sendCooldown(event.getPlayer(), "Gapple");
         }
     }
 
     @EventHandler
-    private void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {

@@ -1,8 +1,6 @@
 package me.dubai.lunar;
 
-import me.dubai.lunar.utils.Color;
-
-import java.text.MessageFormat;
+import me.dubai.lunar.utils.Utils;
 
 public enum Locale {
     LUNAR_TAG_1("NAMETAG.FIRST"),
@@ -22,7 +20,7 @@ public enum Locale {
         this.path = path;
     }
 
-    public String messageFormat(Object... objects) {
-        return (new MessageFormat(Color.translate(LunarUtility.getInstance().getConfig().getString(this.path)))).format(objects);
+    public String messageFormat() {
+        return Utils.translate(LunarUtility.getInstance().getConfig().getString(this.path));
     }
 }

@@ -4,7 +4,6 @@ import com.lunarclient.bukkitapi.LunarClientAPI;
 import lombok.RequiredArgsConstructor;
 import me.dubai.lunar.Locale;
 import me.dubai.lunar.LunarUtility;
-import me.dubai.lunar.utils.Color;
 import me.dubai.lunar.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -24,7 +23,7 @@ public class NametagTask implements Runnable {
 
     private List<String> nametagSetup(Player target) {
         List<String> tag = new ArrayList<>();
-        String lunar = (LunarClientAPI.getInstance().isRunningLunarClient(target) ? Color.translate(plugin.getConfig().getString("OTHER.ENABLED")) : Color.translate(plugin.getConfig().getString("OTHER.DISABLED")));
+        String lunar = (LunarClientAPI.getInstance().isRunningLunarClient(target) ? Utils.translate(plugin.getConfig().getString("OTHER.ENABLED")) : Utils.translate(plugin.getConfig().getString("OTHER.DISABLED")));
 
         tag.add(Utils.parsePapi(target, Locale.LUNAR_TAG_1.messageFormat())
                 .replace("<player_displayname>", target.getDisplayName())

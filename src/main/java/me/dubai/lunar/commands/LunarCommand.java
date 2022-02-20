@@ -1,13 +1,16 @@
 package me.dubai.lunar.commands;
 
-import com.jonahseguin.drink.annotation.*;
+import com.jonahseguin.drink.annotation.Command;
+import com.jonahseguin.drink.annotation.OptArg;
+import com.jonahseguin.drink.annotation.Require;
+import com.jonahseguin.drink.annotation.Sender;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import lombok.RequiredArgsConstructor;
 import me.dubai.lunar.Locale;
 import me.dubai.lunar.LunarUtility;
-import me.dubai.lunar.utils.Color;
 import me.dubai.lunar.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,7 +20,7 @@ import java.io.File;
 public class LunarCommand {
     private final LunarUtility plugin;
 
-    @Command(name = "", aliases = "check", desc = "Check if a player is using LunarClient", usage = "<player>")
+    @Command(name = "", aliases = {"check"}, desc = "Check if a player is using LunarClient", usage = "<player>")
     public void onLunarCommand(@Sender Player player, @OptArg Player target) {
 
         if (target == null) {
@@ -38,7 +41,7 @@ public class LunarCommand {
             plugin.getConfig().load(new File(plugin.getDataFolder(), "config.yml"));
             sender.sendMessage(Locale.LUNAR_COMMAND_RELOAD.messageFormat());
         } catch (Exception e) {
-            sender.sendMessage(Color.RED + "An error occurred!");
+            sender.sendMessage(ChatColor.RED + "An error occurred!");
         }
     }
 
@@ -55,7 +58,7 @@ public class LunarCommand {
             }
         });
 
-        plugin.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.MESSAGE").stream().map(list -> Color.translate(list
+        plugin.getConfig().getStringList("MESSAGES.LUNAR-USERS-COMMAND.MESSAGE").stream().map(list -> Utils.translate(list
                         .replace("<totalUsers>", String.valueOf(LunarClientAPI.getInstance().getPlayersRunningLunarClient().size()))
                         .replace("<playerList>", playerList)))
                 .forEach(sender::sendMessage);

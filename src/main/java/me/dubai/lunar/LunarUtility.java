@@ -4,27 +4,23 @@ import com.jonahseguin.drink.CommandService;
 import com.jonahseguin.drink.Drink;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
-import lombok.Getter;
 import me.dubai.lunar.commands.LunarCommand;
 import me.dubai.lunar.commands.LunarStaffCommand;
 import me.dubai.lunar.hook.PlaceholderAPIHook;
 import me.dubai.lunar.listeners.LunarListener;
 import me.dubai.lunar.listeners.NametagTask;
-import me.dubai.lunar.utils.Color;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 
-@Getter
 public class LunarUtility extends JavaPlugin {
 
-    @Getter
-    private static LunarUtility instance;
     private CommandService drink;
+    private static LunarUtility instance;
 
     @Override
     public void onEnable() {
@@ -35,24 +31,18 @@ public class LunarUtility extends JavaPlugin {
         this.registerLunar();
         this.drink.registerCommands();
 
-        Arrays.asList(
-                "&7&m------------------",
-                "&6LunarUtility &ev2.0",
-                "&6Developer: &eDubaiGamer",
-                "&6Status: &aEnabled",
-                "&7&m------------------").forEach(s -> getServer().getConsoleSender().sendMessage(Color.translate(s)));
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "LunarUtility 2.0 has been enabled!");
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new PlaceholderAPIHook().register();
-            getServer().getConsoleSender().sendMessage(Color.GREEN + "Placeholder API expansion successfully registered.");
+            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Placeholder API expansion successfully registered.");
         }
     }
 
 
     @Override
     public void onDisable() {
-        instance = null;
-        getServer().getConsoleSender().sendMessage(Color.RED + "LunarUtility 2.0 has been disabled!");
+        getServer().getConsoleSender().sendMessage(ChatColor.RED + "LunarUtility 2.0 has been disabled!");
     }
 
     private void registerLunar() {
@@ -72,5 +62,9 @@ public class LunarUtility extends JavaPlugin {
         if (getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.registerCooldown(new LCCooldown("Gapple", getConfig().getInt("COOLDOWN.GAPPLE.DELAY"), TimeUnit.SECONDS, Material.GOLDEN_APPLE));
         }
+    }
+
+    public static LunarUtility getInstance() {
+        return instance;
     }
 }

@@ -1,6 +1,6 @@
 ########################
-#  LunarUtility V2.0   #
-#     By Dubai#1454    #
+#     LunarUtility     #
+# By RefineDevelopment #
 ########################
 
 NAMETAG:
@@ -20,7 +20,7 @@ OTHER:
   ENABLED: "&aON"
   DISABLED: "&cOFF"
 
-#Disabled cooldowns for 1.9+ because of LC API Issue (Already reported to devs)
+#Disabled cooldowns for 1.9+ because of LC API Issue
 COOLDOWN:
   ENDERPEARL:
     ENABLE: true

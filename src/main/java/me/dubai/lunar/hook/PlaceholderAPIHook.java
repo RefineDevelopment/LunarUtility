@@ -20,7 +20,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Dubai";
+        return "RefineDevelopment";
     }
 
     @Override
