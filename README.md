@@ -27,6 +27,9 @@ If you find any issues, please report them in our <a href="https://github.com/Re
 2. Put the jar in all of your servers
 3. Edit the configuration files to your liking.
 
+## Terms of Use
++ You are not allowed to sell, claim this as your own. Resepect the developer for his contributions and credit them.
+
 ## Pictures
 ### Nametag
 ![2022-02-10_11 38 33](https://user-images.githubusercontent.com/42650369/154859444-55ffb81b-06b9-497a-9ec5-6c16906b2b83.png)
