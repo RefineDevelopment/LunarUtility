@@ -1,14 +1,14 @@
-package me.dubai.lunar;
+package xyz.refinedev.lunar;
 
 import com.jonahseguin.drink.CommandService;
 import com.jonahseguin.drink.Drink;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
-import me.dubai.lunar.commands.LunarCommand;
-import me.dubai.lunar.commands.LunarStaffCommand;
-import me.dubai.lunar.hook.PlaceholderAPIHook;
-import me.dubai.lunar.listeners.LunarListener;
-import me.dubai.lunar.listeners.NametagTask;
+import xyz.refinedev.lunar.commands.LunarCommand;
+import xyz.refinedev.lunar.commands.LunarStaffCommand;
+import xyz.refinedev.lunar.hook.PlaceholderAPIHook;
+import xyz.refinedev.lunar.listeners.LunarListener;
+import xyz.refinedev.lunar.listeners.NametagTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

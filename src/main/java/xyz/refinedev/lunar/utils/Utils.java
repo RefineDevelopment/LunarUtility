@@ -1,8 +1,8 @@
-package me.dubai.lunar.utils;
+package xyz.refinedev.lunar.utils;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.dubai.lunar.LunarUtility;
+import xyz.refinedev.lunar.LunarUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

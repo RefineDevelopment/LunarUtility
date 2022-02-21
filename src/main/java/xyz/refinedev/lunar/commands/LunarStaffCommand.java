@@ -1,12 +1,12 @@
-package me.dubai.lunar.commands;
+package xyz.refinedev.lunar.commands;
 
 import com.jonahseguin.drink.annotation.Command;
 import com.jonahseguin.drink.annotation.OptArg;
 import com.jonahseguin.drink.annotation.Require;
 import com.jonahseguin.drink.annotation.Sender;
 import com.lunarclient.bukkitapi.LunarClientAPI;
-import me.dubai.lunar.Locale;
-import me.dubai.lunar.utils.Utils;
+import xyz.refinedev.lunar.Locale;
+import xyz.refinedev.lunar.utils.Utils;
 import org.bukkit.entity.Player;
 
 public class LunarStaffCommand {

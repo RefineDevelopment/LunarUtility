@@ -1,6 +1,8 @@
 name: LunarUtility
-main: me.dubai.lunar.LunarUtility
-author: Dubai
+main: xyz.refinedev.lunar.LunarUtility
+authors:
+  - Dubai
+  - RefineDevelopment
 depend: [ LunarClient-API ]
 softdepend: [ PlaceholderAPI ]
 version: ${project.version}

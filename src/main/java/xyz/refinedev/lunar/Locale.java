@@ -1,6 +1,6 @@
-package me.dubai.lunar;
+package xyz.refinedev.lunar;
 
-import me.dubai.lunar.utils.Utils;
+import xyz.refinedev.lunar.utils.Utils;
 
 public enum Locale {
     LUNAR_TAG_1("NAMETAG.FIRST"),

@@ -1,7 +1,7 @@
-package me.dubai.lunar.hook;
+package xyz.refinedev.lunar.hook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.dubai.lunar.utils.Utils;
+import xyz.refinedev.lunar.utils.Utils;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

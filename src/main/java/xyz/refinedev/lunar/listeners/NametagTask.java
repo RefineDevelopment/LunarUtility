@@ -1,10 +1,10 @@
-package me.dubai.lunar.listeners;
+package xyz.refinedev.lunar.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import lombok.RequiredArgsConstructor;
-import me.dubai.lunar.Locale;
-import me.dubai.lunar.LunarUtility;
-import me.dubai.lunar.utils.Utils;
+import xyz.refinedev.lunar.Locale;
+import xyz.refinedev.lunar.LunarUtility;
+import xyz.refinedev.lunar.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
