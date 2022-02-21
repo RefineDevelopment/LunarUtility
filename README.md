@@ -24,8 +24,9 @@ If you find any issues, please report them in our <a href="https://github.com/Re
 
 ## Installing
 1. Download the jar from <a href="https://github.com/RefineDevelopment/LunarUtility/releases">releases</a>
-2. Put the jar in all of your servers
-3. Edit the configuration files to your liking.
+2. Download LunarClient's BukkitAPI jar from [here](https://github.com/LunarClient/BukkitAPI)
+3. Put both jars in all of your servers
+4. Edit the configuration file to your liking.
 
 ## Terms of Use
 + You are not allowed to sell, claim this as your own. Resepect the developer for his contributions and credit them.
