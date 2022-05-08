@@ -1,19 +1,16 @@
 package xyz.refinedev.lunar.commands;
 
-import com.jonahseguin.drink.annotation.Command;
-import com.jonahseguin.drink.annotation.OptArg;
-import com.jonahseguin.drink.annotation.Require;
-import com.jonahseguin.drink.annotation.Sender;
 import com.lunarclient.bukkitapi.LunarClientAPI;
+import me.vaperion.blade.annotation.*;
+import org.bukkit.entity.Player;
 import xyz.refinedev.lunar.Locale;
 import xyz.refinedev.lunar.utils.Utils;
-import org.bukkit.entity.Player;
 
 public class LunarStaffCommand {
 
-    @Command(name = "", desc = "Give a person Lunar staff mods", usage = "<player>")
-    @Require(value = "lunar.staff")
-    public void onLunarStaffModeCommand(@Sender Player player, @OptArg Player target) {
+    @Command(value = {"lunarstaffmode", "lcstaffmode", "lunarstaffmod", "lunarstaffmods", "lsm"})
+    @Permission(value = "lunar.staff")
+    public void onLunarStaffModeCommand(@Sender Player player, @Optional @Name("target") Player target) {
         if (target == null) {
             LunarClientAPI.getInstance().giveAllStaffModules(player);
             player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_STAFF_COMMAND_PLAYER.messageFormat()));

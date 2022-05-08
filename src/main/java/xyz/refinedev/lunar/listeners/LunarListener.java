@@ -55,5 +55,9 @@ public class LunarListener implements Listener {
             LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);
             LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(plugin.getConfig().getString("WAYPOINTS.NAME"), Bukkit.getWorld(plugin.getConfig().getString("WAYPOINTS.WORLD")).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
         }
+
+        if (plugin.getPacketModSettings() != null) {
+            LunarClientAPI.getInstance().sendPacket(event.getPlayer(), plugin.getPacketModSettings());
+        }
     }
 }

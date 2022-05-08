@@ -35,6 +35,13 @@ REQUIRE-LUNAR:
   ENABLED: false
   MESSAGE: "&cLunar Client is required to play on the server! <space> &cDownload at &olunarclient.com/download" #<space> adds a new line
 
+MODS:
+  DISABLE-ALL-MODS: false
+  DISABLE-MODS:
+    ENABLED: false
+    MODS:
+     - "skyblockAddons"
+
 MESSAGES:
   MAIN:
     RELOAD: "&6LunarUtility &ehas been reloaded."

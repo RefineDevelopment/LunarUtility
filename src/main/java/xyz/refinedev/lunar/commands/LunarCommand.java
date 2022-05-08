@@ -1,18 +1,15 @@
 package xyz.refinedev.lunar.commands;
 
-import com.jonahseguin.drink.annotation.Command;
-import com.jonahseguin.drink.annotation.OptArg;
-import com.jonahseguin.drink.annotation.Require;
-import com.jonahseguin.drink.annotation.Sender;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import lombok.RequiredArgsConstructor;
-import xyz.refinedev.lunar.Locale;
-import xyz.refinedev.lunar.LunarUtility;
-import xyz.refinedev.lunar.utils.Utils;
+import me.vaperion.blade.annotation.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import xyz.refinedev.lunar.Locale;
+import xyz.refinedev.lunar.LunarUtility;
+import xyz.refinedev.lunar.utils.Utils;
 
 import java.io.File;
 
@@ -20,8 +17,8 @@ import java.io.File;
 public class LunarCommand {
     private final LunarUtility plugin;
 
-    @Command(name = "", aliases = {"check"}, desc = "Check if a player is using LunarClient", usage = "<player>")
-    public void onLunarCommand(@Sender Player player, @OptArg Player target) {
+    @Command(value = {"lunarclient", "lc", "lunar check", "lc check"})
+    public void onLunarCommand(@Sender Player player, @Optional @Name("target") Player target) {
 
         if (target == null) {
             player.sendMessage(Utils.parsePapi(player, Locale.LUNAR_COMMAND_PLAYER.messageFormat())
@@ -34,8 +31,8 @@ public class LunarCommand {
         }
     }
 
-    @Command(name = "reload", desc = "Reload the config file")
-    @Require(value = "lunar.reload")
+    @Command(value = {"lunarclient reload", "lc reload", "lunar reload"})
+    @Permission(value = "lunar.reload")
     public void onLunarReloadCommand(@Sender CommandSender sender) {
         try {
             plugin.getConfig().load(new File(plugin.getDataFolder(), "config.yml"));
@@ -45,7 +42,7 @@ public class LunarCommand {
         }
     }
 
-    @Command(name = "users", aliases = {"online", "lc"}, desc = "View a list of players using LunarClient")
+    @Command(value = {"lunarclient users", "lc users", "lunar users", "lunerclient online", "lc online", "lunar online"})
     public void onLunarUsersCommand(@Sender CommandSender sender) {
         StringBuilder playerList = new StringBuilder();
 

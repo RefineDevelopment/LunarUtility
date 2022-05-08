@@ -1,35 +1,52 @@
 package xyz.refinedev.lunar;
 
-import com.jonahseguin.drink.CommandService;
-import com.jonahseguin.drink.Drink;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
+import com.lunarclient.bukkitapi.nethandler.client.LCPacketModSettings;
+import com.lunarclient.bukkitapi.nethandler.client.obj.ModSettings;
+import lombok.Getter;
+import me.vaperion.blade.Blade;
+import me.vaperion.blade.bindings.impl.BukkitBindings;
+import me.vaperion.blade.container.impl.BukkitCommandContainer;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.plugin.java.JavaPlugin;
 import xyz.refinedev.lunar.commands.LunarCommand;
 import xyz.refinedev.lunar.commands.LunarStaffCommand;
 import xyz.refinedev.lunar.hook.PlaceholderAPIHook;
 import xyz.refinedev.lunar.listeners.LunarListener;
 import xyz.refinedev.lunar.listeners.NametagTask;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.plugin.java.JavaPlugin;
+import xyz.refinedev.lunar.utils.Utils;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 
+@Getter
 public class LunarUtility extends JavaPlugin {
 
-    private CommandService drink;
+    @Getter
     private static LunarUtility instance;
+    private LCPacketModSettings packetModSettings = null;
 
     @Override
     public void onEnable() {
         instance = this;
-        drink = Drink.get(this);
+
+        Blade.of()
+                .overrideCommands(true)
+                .fallbackPrefix("lunarutility")
+                .binding(new BukkitBindings())
+                .containerCreator(BukkitCommandContainer.CREATOR)
+                .defaultPermissionMessage(ChatColor.RED + "No permission.")
+                .build()
+                .register(new LunarStaffCommand())
+                .register(new LunarCommand(this));
 
         this.saveDefaultConfig();
         this.registerLunar();
-        this.drink.registerCommands();
+        this.loadDisabledMods();
 
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "LunarUtility 2.0 has been enabled!");
 
@@ -47,8 +64,6 @@ public class LunarUtility extends JavaPlugin {
 
     private void registerLunar() {
         Bukkit.getPluginManager().registerEvents(new LunarListener(this), this);
-        drink.register(new LunarCommand(this), "lunarclient", "lunar", "lc");
-        drink.register(new LunarStaffCommand(), "lunarstaffmode", "lcstaffmode", "lunarstaffmod", "lunarstaffmods", "lsm");
 
         if (getConfig().getBoolean("NAMETAG.ENABLE")) {
             this.getServer().getScheduler().runTaskTimer(this, new NametagTask(this), 0, Long.parseLong(Locale.LUNAR_TAG_TICKS.messageFormat()));
@@ -64,7 +79,19 @@ public class LunarUtility extends JavaPlugin {
         }
     }
 
-    public static LunarUtility getInstance() {
-        return instance;
+    private void loadDisabledMods() {
+        ModSettings modSettings = new ModSettings();
+
+        if (getConfig().getBoolean("MODS.DISABLE-ALL-MODS")) {
+            Utils.getModList().forEach(modName -> modSettings.addModSetting(modName, new ModSettings.ModSetting(false, new HashMap<>())));
+            packetModSettings = new LCPacketModSettings(modSettings);
+            return;
+        }
+
+            if (getConfig().getBoolean("MODS.DISABLE-MODS.ENABLED")) {
+                getConfig().getStringList("MODS.DISABLE-MODS.MODS")
+                        .forEach(modName -> modSettings.addModSetting(modName, new ModSettings.ModSetting(false, new HashMap<>())));
+                packetModSettings = new LCPacketModSettings(modSettings);
+            }
     }
 }
