@@ -3,31 +3,20 @@
 # By RefineDevelopment #
 ########################
 
-NAMETAG:
-  ENABLE: true #Needs Restart
-  TICKS: "40" #1 second = 20 ticks | Every x seconds the nametag should update
-  FIRST: "&7[<status> &bLC&7]"
-  SECOND:
-    ENABLE: true
-    TAG: "<player_name>" # use <player_displayname> for disguise support
-
-WAYPOINTS:
-  ENABLE: true
-  NAME: "Spawn"
-  WORLD: "world"
-
-OTHER:
-  ENABLED: "&aON"
-  DISABLED: "&cOFF"
-
 #Disabled cooldowns for 1.9+ because of LC API Issue
 COOLDOWN:
-  ENDERPEARL:
+  ENDERPEARL: #Sends cooldown on enderpearl throw
     ENABLE: true
+    ICON: "ENDER_PEARL"
     DELAY: 16
-  GAPPLE:
+  GAPPLE: #Sends cooldown when a gapple is eaten
     ENABLE: false
-    DELAY: 5
+    ICON: "GOLDEN_APPLE"
+    DELAY: 45
+  COMBAT: #Sends cooldown when a fight happens | both to the damager and the target
+    ENABLE: false
+    ICON: "DIAMOND_SWORD"
+    DELAY: 30
 #Don't set the cooldown to 0 or else the plugin won't work!
 #You have to restart the server whenever you change the delay.
 
@@ -41,6 +30,31 @@ MODS:
     ENABLED: false
     MODS:
      - "skyblockAddons"
+
+WAYPOINT:
+  ENABLED: true #If false, it won't load all the waypoints below
+  WAYPOINTS:
+   - Spawn: # The same name as the waypoint.
+       x: 0
+       y: 100
+       z: 0
+       name: "Spawn"
+       world: "world"
+       color: 0xFF0000 # MUST be a hexadecimal number of a color
+       forced: true
+       visible: true
+
+NAMETAG:
+  ENABLE: true #Needs Restart
+  TICKS: "40" #1 second = 20 ticks | Every x seconds the nametag should update
+  FIRST: "&7[<status> &bLC&7]"
+  SECOND:
+    ENABLE: true
+    TAG: "<player_name>" # use <player_displayname> for disguise support
+
+OTHER:
+  ENABLED: "&aON"
+  DISABLED: "&cOFF"
 
 MESSAGES:
   MAIN:

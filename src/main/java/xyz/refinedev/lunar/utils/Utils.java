@@ -2,10 +2,10 @@ package xyz.refinedev.lunar.utils;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import me.clip.placeholderapi.PlaceholderAPI;
-import xyz.refinedev.lunar.LunarUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import xyz.refinedev.lunar.LunarUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,6 @@ public class Utils {
         modList.add("screenshot");
         modList.add("fov_mod");
         modList.add("textHotKey");
-        modList.add("netgraph");
         modList.add("mumble-link");
         modList.add("bossbar");
         modList.add("freelook");

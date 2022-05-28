@@ -2,27 +2,60 @@ package xyz.refinedev.lunar.listeners;
 
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
-import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
-import com.lunarclient.bukkitapi.object.LCWaypoint;
 import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
 import lombok.RequiredArgsConstructor;
-import xyz.refinedev.lunar.Locale;
-import xyz.refinedev.lunar.LunarUtility;
-import xyz.refinedev.lunar.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.EnderPearl;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import xyz.refinedev.lunar.Locale;
+import xyz.refinedev.lunar.LunarUtility;
+import xyz.refinedev.lunar.utils.Utils;
 
 @RequiredArgsConstructor
 public class LunarListener implements Listener {
     private final LunarUtility plugin;
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        //Send disabled mod's packet to player
+        if (plugin.getPacketModSettings() != null) {
+            LunarClientAPI.getInstance().sendPacket(event.getPlayer(), plugin.getPacketModSettings());
+        }
+
+        if (plugin.getConfig().getBoolean("WAYPOINT.ENABLED")) {
+            plugin.getWaypoints().forEach(waypoint -> LunarClientAPI.getInstance().sendWaypoint(event.getPlayer(), waypoint));
+            LunarClientAPIServerRule.sendServerRule(player);
+        }
+
+        //After 2 seconds on join, if the player isn't running lc, kick them
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (!LunarClientAPI.getInstance().isRunningLunarClient(player) && plugin.getConfig().getBoolean("REQUIRE-LUNAR.ENABLED")) {
+                player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("\n", "<space>"));
+            }
+        }, 2 * 20L);
+    }
+
+    @EventHandler
+    public void onPlayerDamagePlayer(EntityDamageByEntityEvent event) {
+        if (!plugin.getConfig().getBoolean("COOLDOWN.COMBAT.ENABLE")) return;
+        if (event.getEntity().getType() != EntityType.PLAYER) return;
+        if (event.getDamager().getType() != EntityType.PLAYER) return;
+
+        if (Utils.isCompatible()) {
+            LunarClientAPICooldown.sendCooldown((Player) event.getEntity(), "Combat");
+            LunarClientAPICooldown.sendCooldown((Player) event.getDamager(), "Combat");
+        }
+    }
 
     @EventHandler
     public void onPearlLaunch(ProjectileLaunchEvent event) {
@@ -38,26 +71,6 @@ public class LunarListener implements Listener {
 
         if (Utils.isCompatible() && event.getItem().getType().equals(Material.GOLDEN_APPLE) && plugin.getConfig().getBoolean("COOLDOWN.GAPPLE.ENABLE")) {
             LunarClientAPICooldown.sendCooldown(event.getPlayer(), "Gapple");
-        }
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            if (!LunarClientAPI.getInstance().isRunningLunarClient(player) && plugin.getConfig().getBoolean("REQUIRE-LUNAR.ENABLED")) {
-                player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("\n", "<space>"));
-            }
-        }, 2 * 20L);
-
-        if (plugin.getConfig().getBoolean("WAYPOINTS.ENABLE")) {
-            LunarClientAPIServerRule.setRule(ServerRule.SERVER_HANDLES_WAYPOINTS, true);
-            LunarClientAPI.getInstance().sendWaypoint(player, new LCWaypoint(plugin.getConfig().getString("WAYPOINTS.NAME"), Bukkit.getWorld(plugin.getConfig().getString("WAYPOINTS.WORLD")).getSpawnLocation(), Color.GREEN.asRGB(), true, true));
-        }
-
-        if (plugin.getPacketModSettings() != null) {
-            LunarClientAPI.getInstance().sendPacket(event.getPlayer(), plugin.getPacketModSettings());
         }
     }
 }
