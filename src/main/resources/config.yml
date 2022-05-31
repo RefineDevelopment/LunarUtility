@@ -64,9 +64,14 @@ MESSAGES:
     PLAYER: "&6You are currently <status> &eLunarClient."
     TARGET: "&e<target> &6is currently <status> &eLunarClient."
   LUNAR-STAFF-COMMAND:
-    PLAYER: "&aYou have enabled all LunarClient staff mods."
-    TARGET: "&aYou have enabled all LunarClient staff mods for <target>."
-    TO-TARGET: "&aAll LunarClient mods have been enabled for you by <player>."
+    ENABLE:
+     PLAYER: "&aYou have enabled all LunarClient staff mods."
+     TARGET: "&aYou have enabled all LunarClient staff mods for <target>."
+     TO-TARGET: "&aAll LunarClient mods have been enabled for you by <player>."
+    DISABLE:
+      PLAYER: "&cYou have disabled your LunarClient staff mods."
+      TARGET: "&6You have disabled &e<target>'s &6LunarClient staff mods."
+      TO-TARGET: "&cYour LunarClient staff mods have been disabled by <player>."
   LUNAR-USERS-COMMAND:
     SEPERATOR: "&7, "
     MESSAGE:
