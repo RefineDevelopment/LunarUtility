@@ -1,0 +1,57 @@
+# LunarClient Mod IDs
+# I don't know the IDs for these mods: 
+# Day Counter, Hit Color, Tab Editor, NameTags, Color Saturation,
+# TNT Cooldown, 3D Skins, Pack Display, Chunk Borders, and Better Sounds.
+#
+# If you know the mod ID for any of these mods or a new mod's ID, please create a PR.
+
+# 1.7 Visuals - one_seven_visuals
+# FPS - fps
+# CPS - cps
+# Toggle Sneak/Sprint - toggleSneak
+# Armor Status - armorstatus
+# KeyStrokes - keystrokes
+# Coordinates - coo
+# Crosshair - crosshair
+# Potion Effects - potioneffects
+# Direction HUD - directionhud
+# Waypoints - waypoints
+# Scoreboard - scoreboard
+# Potion Counter - potion_counter
+# Ping - ping
+# Motion Blur - motionbBlur
+# Chat - chat
+# Scrollable Tooltips - scrollable_tooltips
+# UHC Overlay - uhc_overlay
+# Cooldowns - cooldowns
+# Worldedit CUI - worldedit_cui
+# Clock - clock
+# StopWatch - stopwatch
+# Memory - memory
+# Combo - combo
+# Reach Dsplay - range
+# Time Changer - time_changer
+# Server Address - serverAddressMod
+# Saturation - saturation
+# Item Phsyic - itemPhysic
+# Item Tracker - itemTrackerChild
+# Shiny Pots - shinyPots
+# Block Outline - block_outline
+# Screenshot - screenshot
+# FOV Mod - fov_mod
+# Auto Text Hotkey - textHotKey
+# Mumble Link - mumble-link
+# Boss Bar - bossbar
+# Free Look - freelook
+# Nick Hider - nickHider
+# Pack Organizer - packorganizer
+# Particle Mod - particleMod
+# Glint Colorizer - glint_colorizer
+# SnapLook - snaplook
+# Team Viewer - teamview
+# Menu Blur - menu_blur
+# Hit Box - hitbox
+# Weather Changer - weather_changer
+# Lighting - lighting
+# Zoom - zoom
+
