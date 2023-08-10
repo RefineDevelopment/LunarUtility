@@ -37,12 +37,12 @@ public class LunarListener implements Listener {
             LunarClientAPIServerRule.sendServerRule(player);
         }
 
-        //After 2 seconds on join, if the player isn't running lc, kick them
-        Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
+        //After 1 second on join, if the player isn't running lc, kick them
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if (!LunarClientAPI.getInstance().isRunningLunarClient(player) && plugin.getConfig().getBoolean("REQUIRE-LUNAR.ENABLED")) {
-                player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("\n", "<space>"));
+                player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("<space>", "\n"));
             }
-        }, 2 * 20L);
+        }, 20L);
     }
 
     @EventHandler
