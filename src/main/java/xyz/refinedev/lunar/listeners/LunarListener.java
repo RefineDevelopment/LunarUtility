@@ -38,7 +38,7 @@ public class LunarListener implements Listener {
         }
 
         //After 2 seconds on join, if the player isn't running lc, kick them
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
             if (!LunarClientAPI.getInstance().isRunningLunarClient(player) && plugin.getConfig().getBoolean("REQUIRE-LUNAR.ENABLED")) {
                 player.kickPlayer(Locale.LUNAR_KICK_MESSAGE.messageFormat().replace("\n", "<space>"));
             }

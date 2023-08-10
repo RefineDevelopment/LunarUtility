@@ -2,6 +2,8 @@ package xyz.refinedev.lunar;
 
 import xyz.refinedev.lunar.utils.Utils;
 
+import java.util.List;
+
 public enum Locale {
     LUNAR_TAG_1("NAMETAG.FIRST"),
     LUNAR_TAG_TICKS("NAMETAG.TICKS"),
@@ -11,6 +13,7 @@ public enum Locale {
     LUNAR_COMMAND_PLAYER("MESSAGES.LUNAR-COMMAND.PLAYER"),
     LUNAR_COMMAND_TARGET("MESSAGES.LUNAR-COMMAND.TARGET"),
     LUNAR_USERS_SEPERATOR("MESSAGES.LUNAR-USERS-COMMAND.SEPERATOR"),
+    LUNAR_USERS_MESSAGE("MESSAGES.LUNAR-USERS-COMMAND.MESSAGE"),
     LUNAR_STAFF_COMMAND_ENABLE_PLAYER("MESSAGES.LUNAR-STAFF-COMMAND.ENABLE.PLAYER"),
     LUNAR_STAFF_COMMAND_ENABLE_TARGET("MESSAGES.LUNAR-STAFF-COMMAND.ENABLE.TARGET"),
     LUNAR_STAFF_COMMAND_DISABLE_PLAYER("MESSAGES.LUNAR-STAFF-COMMAND.DISABLE.PLAYER"),
@@ -26,5 +29,9 @@ public enum Locale {
 
     public String messageFormat() {
         return Utils.translate(LunarUtility.getInstance().getConfig().getString(this.path));
+    }
+
+    public final List<String> messageFormatList() {
+        return Utils.translate(LunarUtility.getInstance().getConfig().getStringList(this.path));
     }
 }

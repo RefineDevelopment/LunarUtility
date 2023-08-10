@@ -2,6 +2,7 @@ name: LunarUtility
 main: xyz.refinedev.lunar.LunarUtility
 authors:
   - Dubai
+  - Komek
   - RefineDevelopment
 depend: [ LunarClient-API ]
 softdepend: [ PlaceholderAPI ]

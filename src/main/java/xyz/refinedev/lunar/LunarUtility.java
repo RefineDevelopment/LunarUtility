@@ -1,5 +1,6 @@
 package xyz.refinedev.lunar;
 
+import co.aikar.commands.PaperCommandManager;
 import com.google.gson.JsonParser;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import com.lunarclient.bukkitapi.cooldown.LCCooldown;
@@ -10,9 +11,6 @@ import com.lunarclient.bukkitapi.nethandler.client.obj.ServerRule;
 import com.lunarclient.bukkitapi.object.LCWaypoint;
 import com.lunarclient.bukkitapi.serverrule.LunarClientAPIServerRule;
 import lombok.Getter;
-import me.vaperion.blade.Blade;
-import me.vaperion.blade.bindings.impl.BukkitBindings;
-import me.vaperion.blade.container.impl.BukkitCommandContainer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -36,6 +34,8 @@ public class LunarUtility extends JavaPlugin {
 
     @Getter
     private static LunarUtility instance;
+
+    private PaperCommandManager commandManager;
     private LCPacketModSettings packetModSettings = null;
     private final List<LCWaypoint> waypoints = new ArrayList<>();
 
@@ -43,15 +43,10 @@ public class LunarUtility extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        Blade.of()
-                .overrideCommands(true)
-                .fallbackPrefix("lunarutility")
-                .binding(new BukkitBindings())
-                .containerCreator(BukkitCommandContainer.CREATOR)
-                .defaultPermissionMessage(ChatColor.RED + "No permission.")
-                .build()
-                .register(new LunarStaffCommand())
-                .register(new LunarCommand(this));
+        this.commandManager = new PaperCommandManager(this);
+
+        this.commandManager.registerCommand(new LunarCommand(this));
+        this.commandManager.registerCommand(new LunarStaffCommand());
 
         this.saveDefaultConfig();
         this.registerLunar();
@@ -76,7 +71,7 @@ public class LunarUtility extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new LunarListener(this), this);
 
         if (getConfig().getBoolean("NAMETAG.ENABLE")) {
-            this.getServer().getScheduler().runTaskTimer(this, new NametagTask(this), 0, Long.parseLong(Locale.LUNAR_TAG_TICKS.messageFormat()));
+            this.getServer().getScheduler().runTaskTimerAsynchronously(this, new NametagTask(this), 0, Long.parseLong(Locale.LUNAR_TAG_TICKS.messageFormat()));
         }
 
         if (getConfig().getBoolean("COOLDOWN.COMBAT.ENABLE")) {
@@ -112,6 +107,7 @@ public class LunarUtility extends JavaPlugin {
 
         if (getConfig().getBoolean("MODS.DISABLE-ALL-MODS")) {
             Utils.getModList().forEach(modName -> modSettings.addModSetting(modName, new ModSettings.ModSetting(false, new HashMap<>())));
+
             packetModSettings = new LCPacketModSettings(modSettings);
             return;
         }
@@ -119,6 +115,7 @@ public class LunarUtility extends JavaPlugin {
         if (getConfig().getBoolean("MODS.DISABLE-MODS.ENABLED")) {
             getConfig().getStringList("MODS.DISABLE-MODS.MODS")
                     .forEach(modName -> modSettings.addModSetting(modName, new ModSettings.ModSetting(false, new HashMap<>())));
+
             packetModSettings = new LCPacketModSettings(modSettings);
         }
     }

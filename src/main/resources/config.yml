@@ -25,7 +25,7 @@ REQUIRE-LUNAR:
   MESSAGE: "&cLunar Client is required to play on the server! <space> &cDownload at &olunarclient.com/download" #<space> adds a new line
 
 MODS:
-  DISABLE-ALL-MODS: false
+  DISABLE-ALL-MODS: false #This list has to be updated always through the plugin (its not auto)
   DISABLE-MODS:
     ENABLED: false
     MODS:

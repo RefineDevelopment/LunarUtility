@@ -8,7 +8,9 @@ import org.bukkit.entity.Player;
 import xyz.refinedev.lunar.LunarUtility;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static String parsePapi(Player player, String text) {
@@ -23,67 +25,30 @@ public class Utils {
         return Bukkit.getServer().getVersion().contains("1.7") || Bukkit.getServer().getVersion().contains("1.8");
     }
 
-    public static String translate(String s) {
-        return ChatColor.translateAlternateColorCodes('&', s);
+    public static String translate(String text) {
+        return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    public static List<String> translate(List<String> text) {
+        return text.stream().map(string -> ChatColor.translateAlternateColorCodes('&', string)).collect(Collectors.toList());
     }
 
     public static List<String> getModList() {
-        List<String> modList = new ArrayList<>();
+        // There is no other way than to list them manually because LunarClientAPI doesn't provide a list of their mod ids
+        // There are newer mods, but I'm busy so push pr if you find them
 
-        modList.add("one_seven_visuals");
-        modList.add("fps");
-        modList.add("cps");
-        modList.add("skyblockAddons");
-        modList.add("toggleSneak");
-        modList.add("hypixel_mod");
-        modList.add("armorstatus");
-        modList.add("keystrokes");
-        modList.add("coords");
-        modList.add("crosshair");
-        modList.add("potioneffects");
-        modList.add("directionhud");
-        modList.add("waypoints");
-        modList.add("scoreboard");
-        modList.add("potion_counter");
-        modList.add("ping");
-        modList.add("motionBlur");
-        modList.add("chat");
-        modList.add("scrollable_tooltips");
-        modList.add("uhc_overlay");
-        modList.add("cooldowns");
-        modList.add("worldedit_cui");
-        modList.add("clock");
-        modList.add("stopwatch");
-        modList.add("memory");
-        modList.add("combo");
-        modList.add("range");
-        modList.add("time_changer");
-        modList.add("serverAddressMod");
-        modList.add("saturation");
-        modList.add("itemPhysic");
-        modList.add("itemTrackerChild");
-        modList.add("shinyPots");
-        modList.add("block_outline");
-        modList.add("screenshot");
-        modList.add("fov_mod");
-        modList.add("textHotKey");
-        modList.add("mumble-link");
-        modList.add("bossbar");
-        modList.add("freelook");
-        modList.add("nickHider");
-        modList.add("pack_organizer");
-        modList.add("hypixel_bedwars");
-        modList.add("particleMod");
-        modList.add("glint_colorizer");
-        modList.add("snaplook");
-        modList.add("teamview");
-        modList.add("menu_blur");
-        modList.add("hitbox");
-        modList.add("hitcolor");
-        modList.add("weather_changer");
-        modList.add("lighting");
-        modList.add("zoom");
-
-        return modList;
+        return new ArrayList<>(Arrays.asList(
+                "one_seven_visuals", "fps", "cps", "skyblockAddons", "toggleSneak",
+                "hypixel_mod", "armorstatus", "keystrokes", "coords", "crosshair",
+                "potioneffects", "directionhud", "waypoints", "scoreboard", "potion_counter",
+                "ping", "motionBlur", "chat", "scrollable_tooltips", "uhc_overlay",
+                "cooldowns", "worldedit_cui", "clock", "stopwatch", "memory",
+                "combo", "range", "time_changer", "serverAddressMod", "saturation",
+                "itemPhysic", "itemTrackerChild", "shinyPots", "block_outline", "screenshot",
+                "fov_mod", "textHotKey", "mumble-link", "bossbar", "freelook",
+                "nickHider", "pack_organizer", "hypixel_bedwars", "particleMod", "glint_colorizer",
+                "snaplook", "teamview", "menu_blur", "hitbox", "hitcolor",
+                "weather_changer", "lighting", "zoom"
+        ));
     }
 }
