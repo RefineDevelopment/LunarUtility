@@ -10,6 +10,11 @@
 If you find any issues, please report them in our <a href="https://github.com/RefineDevelopment/LunarUtility/issues">issues tab</a> and don't forget to star the repository!
 </div>
 
+# Notice (UPDATE REGARDING THE LUNARCLIENT API)
+LunarClient have officially released their new API [Apollo](https://github.com/LunarClient/Apollo).\
+They have removed BukkitAPI from their github which is what LunarUtility depends on.\
+We will be updating this soon to utilize Apollo.
+
 ## The Team
 + [Dubai](https://github.com/GamerRealm) | Original Author
 + [Komek](https://github.com/Komeek) | Maintainer
